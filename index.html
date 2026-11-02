@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kho Lưu Trữ Thư Tín & Hành Trình Tham Vấn - Huyền Phương & Anh Thiện</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sunny: {
+              teal: '#1992b0',
+              orange: '#ff9500',
+              dark: '#0e5567',
+              light: '#e8f7fa',
+              accent: '#ffaa33'
+            }
+          },
+          fontFamily: {
+            serif: ['Merriweather', 'serif'],
+            sans: ['Nunito Sans', 'sans-serif'],
+          },
+          animation: {
+            shimmer: 'shimmer 2.2s linear infinite',
+            pulseSlow: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            shimmer: {
+              from: { backgroundPosition: '0 0' },
+              to: { backgroundPosition: '-200% 0' },
+            },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1992b0; }
+
+    /* Aceternity Tailwind Button Keyframes */
+    @keyframes border-rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-border-glow {
+      position: absolute;
+      inset: -2px;
+      border-radius: 9999px;
+      background: conic-gradient(from 0deg, #1992b0, #ff9500, #1992b0);
+      animation: border-rotate 4s linear infinite;
+      z-index: 0;
+    }
+
+    /* Tab panes display rules: completely hide inactive tabs */
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+      animation: tabFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Print settings */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; font-size: 13pt; }
+      #content-area { margin-left: 0 !important; width: 100% !important; padding: 0 !important; }
+      #main-content { margin-left: 0 !important; width: 100% !important; padding: 0 !important; max-width: 100% !important; }
+      .letter-card { border: none !important; box-shadow: none !important; padding: 0 !important; }
+      .tab-pane { display: none !important; }
+      .tab-pane.active { display: block !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- ======================================================== -->
+  <!-- ACETERNITY FLOATING NAVBAR MENU DEMO (Top Floating Pill) -->
+  <!-- ======================================================== -->
+  <div class="fixed top-4 inset-x-0 max-w-4xl mx-auto z-50 px-4 no-print pointer-events-none">
+    <nav class="pointer-events-auto bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-full shadow-lg shadow-slate-200/50 px-4 py-2 flex items-center justify-between transition-all duration-300">
+      
+      <!-- Brand Logo / Badge -->
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTab('home')">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#1992b0] to-[#ff9500] flex items-center justify-center text-white font-bold text-sm shadow-md shadow-sunny-teal/30">
+          SC
+        </div>
+        <span class="font-serif font-bold text-sm text-slate-800 hidden sm:inline tracking-tight">
+          SunnyCare <span class="text-[#1992b0]">Archive</span>
+        </span>
+      </div>
+
+      <!-- Center Links (Floating Pill Tabs) -->
+      <div class="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-semibold">
+        <button onclick="switchTab('home')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-[#1992b0] bg-sunny-light font-bold" data-target="home">
+          Trang Chủ
+        </button>
+        <button onclick="switchTab('letter1')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100" data-target="letter1">
+          Phiên 1
+        </button>
+        <button onclick="switchTab('letter-client')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#ff9500] hover:bg-slate-100" data-target="letter-client">
+          Tâm Thư 10T
+        </button>
+        <button onclick="switchTab('letter2')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100" data-target="letter2">
+          Phiên 2
+        </button>
+        <button onclick="switchTab('practice')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100 hidden md:inline-block" data-target="practice">
+          Thực Hành
+        </button>
+        <button onclick="switchTab('session3')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#ff9500] hover:bg-slate-100 hidden md:inline-block" data-target="session3">
+          Phiên 3
+        </button>
+      </div>
+
+      <!-- Quick Action: Folder & Print -->
+      <div class="flex items-center gap-2">
+        <a href="thu/" target="_blank" title="Mở thư mục lưu trữ thư" class="p-1.5 rounded-full text-slate-500 hover:text-[#ff9500] hover:bg-slate-100 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+        </a>
+        <button onclick="window.print()" title="In / Xuất PDF" class="p-1.5 rounded-full text-slate-500 hover:text-[#1992b0] hover:bg-slate-100 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main Container with Sidebar Layout -->
+  <div class="flex-1 flex pt-20">
+
+    <!-- ======================================================== -->
+    <!-- ACETERNITY SIDEBAR DEMO (Collapsible Modern Left Sidebar) -->
+    <!-- ======================================================== -->
+    <aside id="sidebar" class="no-print fixed top-0 bottom-0 left-0 z-40 bg-white border-r border-slate-200 transition-all duration-300 ease-in-out w-64 flex flex-col justify-between shadow-sm">
+      
+      <!-- Sidebar Top: Brand & Toggle -->
+      <div>
+        <div class="h-20 flex items-center justify-between px-5 border-b border-slate-100">
+          <div class="flex items-center gap-3 sidebar-text overflow-hidden">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#1992b0] to-[#ff9500] flex items-center justify-center text-white font-serif font-bold text-base shadow-sm">
+              HP
+            </div>
+            <div class="truncate">
+              <div class="font-serif font-bold text-sm text-slate-800 leading-tight">Huyền Phương</div>
+              <div class="text-[11px] text-[#1992b0] font-medium tracking-wide">SC131026003</div>
+            </div>
+          </div>
+          <button onclick="toggleSidebar()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
+            <svg id="sidebar-icon" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation Links List -->
+        <div class="p-3 space-y-1">
+          <div class="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400 sidebar-text">
+            Hành Trình Tham Vấn
+          </div>
+
+          <!-- Trang Tổng Quan -->
+          <button onclick="switchTab('home')" class="sidebar-btn w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-[#1992b0] bg-sunny-light transition-colors" data-target="home">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span class="sidebar-text truncate">Trang Tổng Quan</span>
+          </button>
+
+          <!-- ======================================================== -->
+          <!-- SƠ ĐỒ CÂY THƯ MỤC THƯ TÍN (TREE VIEW FOLDER COLLAPSIBLE) -->
+          <!-- ======================================================== -->
+          <div class="sidebar-tree pt-1">
+            <!-- Root Folder Header Button -->
+            <button onclick="toggleLetterTree()" id="tree-folder-btn" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-all group">
+              <div class="flex items-center gap-3 min-w-0">
+                <svg id="tree-folder-icon" class="w-5 h-5 flex-shrink-0 text-[#1992b0] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+                <span class="sidebar-text truncate font-bold text-slate-800">Thư Mục Thư Tín</span>
+              </div>
+              <div class="flex items-center gap-1.5 sidebar-text">
+                <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-sunny-light text-[#1992b0] font-bold">3 thư</span>
+                <svg id="tree-chevron" class="w-4 h-4 text-slate-400 transition-transform duration-200 group-hover:text-slate-600 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </button>
+
+            <!-- Sơ đồ nhánh cây sổ ra (Tree Branches) -->
+            <div id="tree-branches" class="ml-4 pl-3.5 my-1 space-y-1 border-l-2 border-slate-200 relative transition-all duration-300">
+              
+              <!-- Nhánh 1: Thư Sau Phiên 1 -->
+              <div class="relative">
+                <span class="absolute -left-[18px] top-1/2 w-3 h-0.5 bg-slate-300"></span>
+                <button onclick="switchTab('letter1')" class="sidebar-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-[#1992b0] hover:bg-slate-50 transition-colors" data-target="letter1">
+                  <svg class="w-4 h-4 flex-shrink-0 text-[#1992b0]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  <span class="sidebar-text truncate">1. Thư Sau Phiên 1</span>
+                </button>
+              </div>
+
+              <!-- Nhánh 2: Tâm Thư 10 Trang -->
+              <div class="relative">
+                <span class="absolute -left-[18px] top-1/2 w-3 h-0.5 bg-slate-300"></span>
+                <button onclick="switchTab('letter-client')" class="sidebar-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-[#ff9500] hover:bg-slate-50 transition-colors" data-target="letter-client">
+                  <svg class="w-4 h-4 flex-shrink-0 text-[#ff9500]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  <span class="sidebar-text truncate">2. Tâm Thư 10 Trang</span>
+                </button>
+              </div>
+
+              <!-- Nhánh 3: Thư Sau Phiên 2 -->
+              <div class="relative">
+                <span class="absolute -left-[18px] top-1/2 w-3 h-0.5 bg-slate-300"></span>
+                <button onclick="switchTab('letter2')" class="sidebar-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-[#1992b0] hover:bg-slate-50 transition-colors" data-target="letter2">
+                  <svg class="w-4 h-4 flex-shrink-0 text-[#1992b0]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                  <span class="sidebar-text truncate">3. Thư Sau Phiên 2</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="pt-2 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400 sidebar-text">
+            Chữa Lành & Kế Hoạch
+          </div>
+
+          <!-- Góc Thực Hành -->
+          <button onclick="switchTab('practice')" class="sidebar-btn w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-[#1992b0] hover:bg-slate-50 transition-colors" data-target="practice">
+            <svg class="w-5 h-5 flex-shrink-0 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            <span class="sidebar-text truncate">Góc Thực Hành</span>
+          </button>
+
+          <!-- Mục Tiêu Phiên 3 -->
+          <button onclick="switchTab('session3')" class="sidebar-btn w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-[#ff9500] hover:bg-slate-50 transition-colors" data-target="session3">
+            <svg class="w-5 h-5 flex-shrink-0 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span class="sidebar-text truncate">Mục Tiêu Phiên 3</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar Bottom: Professional Signature -->
+      <div class="p-4 border-t border-slate-100 flex items-center gap-3 bg-slate-50/50 sidebar-text">
+        <div class="w-8 h-8 rounded-full bg-[#1992b0] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+          TT
+        </div>
+        <div class="truncate">
+          <div class="text-xs font-bold text-slate-800">Trần Thiện</div>
+          <div class="text-[11px] text-slate-500">Nhà tham vấn SUNNYCARE</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ======================================================== -->
+    <!-- MAIN CONTENT & FOOTER AREA (Offset by Sidebar) -->
+    <!-- ======================================================== -->
+    <div id="content-area" class="flex-1 ml-64 transition-all duration-300 flex flex-col min-h-screen">
+      
+      <main id="main-content" class="flex-1 p-4 sm:p-8 max-w-5xl mx-auto w-full">
+
+      <!-- ======================================================== -->
+      <!-- TAB 1: TRANG TỔNG QUAN (HOME) -->
+      <!-- ======================================================== -->
+      <div id="home" class="tab-pane active space-y-6">
+
+        <!-- Hero Header Banner -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm no-print">
+          <img src="header.png" alt="SunnyCare Banner" class="w-full h-auto object-cover">
+          <div class="p-6 sm:p-8 text-center bg-gradient-to-b from-white to-slate-50/50">
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-3">
+              Hồ Sơ Tham Vấn Chuyên Sâu
+            </span>
+            <h1 class="font-serif text-2xl sm:text-3xl font-bold text-slate-800 mb-2">
+              HÀNH TRÌNH CHỮA LÀNH & TRỞ VỀ VỚI CHÍNH MÌNH
+            </h1>
+            <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+              Không gian kỹ thuật số lưu trữ toàn diện từng bức thư, những chiêm nghiệm nội tâm sâu sắc và các bài tập chuyển hóa của thân chủ Đặng Huyền Phương cùng Nhà tham vấn Trần Thiện.
+            </p>
+
+            <!-- ACETERNITY BUTTONS DEMO IN ACTION -->
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3.5">
+              
+              <!-- 1. ACETERNITY SHIMMER BUTTON (SunnyCare Teal) -->
+              <button onclick="switchTab('letter2')" class="relative inline-flex h-11 animate-shimmer items-center justify-center rounded-full border border-sunny-teal/30 bg-[linear-gradient(110deg,#1992b0,45%,#38bdf8,55%,#1992b0)] bg-[length:200%_100%] px-6 text-sm font-bold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#1992b0] focus:ring-offset-2 shadow-md shadow-sunny-teal/20">
+                Đọc Thư Phiên 2 Mới Nhất &rarr;
+              </button>
+
+              <!-- 2. ACETERNITY BORDER GLOW BUTTON (SunnyCare Orange) -->
+              <button onclick="switchTab('practice')" class="relative inline-flex h-11 overflow-hidden rounded-full p-[1.5px] focus:outline-none group">
+                <span class="animate-border-glow"></span>
+                <span class="relative inline-flex h-full w-full items-center justify-center rounded-full bg-white px-5 text-sm font-bold text-[#ff9500] transition-colors group-hover:bg-amber-50">
+                  ⚡ Góc Bài Tập Tự Chữa Lành
+                </span>
+              </button>
+
+              <!-- 3. START READING JOURNEY -->
+              <button onclick="switchTab('letter1')" class="inline-flex h-11 items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 px-5 text-sm font-semibold text-slate-700 transition-colors border border-slate-200">
+                ✉️ Bắt Đầu Từ Thư Phiên 1
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quote Card with SunnyCare Teal border -->
+        <div class="bg-gradient-to-r from-sunny-light via-white to-amber-50/40 border-l-4 border-[#1992b0] rounded-r-xl p-6 shadow-sm">
+          <p class="font-serif italic text-slate-700 text-base sm:text-lg leading-relaxed">
+            “Con người không đạt đến sự khai sáng bằng cách tưởng tượng ra ánh sáng, mà bằng cách đưa bóng tối trong chính mình ra trước ý thức.”
+          </p>
+          <div class="mt-2 font-bold text-xs uppercase tracking-wider text-[#ff9500]">
+            — Carl Gustav Jung (Trích thư thân chủ Đặng Huyền Phương) —
+          </div>
+        </div>
+
+        <!-- 3 Feature Cards Grid (SunnyCare Palette) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          
+          <!-- Card 1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div>
+              <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-3">
+                Phiên 1 · 5 Trang
+              </span>
+              <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">Thư Sau Phiên 1</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                Giành lại quyền kiểm soát, phân tích mâu thuẫn Maslow (thân thể vs. thể hiện bản thân) và bộ lọc khoảng dừng.
+              </p>
+            </div>
+            <button onclick="switchTab('letter1')" class="inline-flex items-center text-sm font-bold text-[#1992b0] hover:text-sunny-dark">
+              Đọc toàn văn thư &rarr;
+            </button>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white rounded-2xl border border-amber-200/80 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-[#ff9500]/10 rounded-bl-full pointer-events-none"></div>
+            <div>
+              <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-[#ff9500] mb-3">
+                Tâm Thư · 10 Trang
+              </span>
+              <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">Tâm Thư Của Huyền Phương</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                Bông hoa dại giữa rừng chông gai, đỗ thủ khoa đại học, bùng nổ nhận thức tuổi 19 và 7 mô thức hành vi tiêu cực.
+              </p>
+            </div>
+            <button onclick="switchTab('letter-client')" class="inline-flex items-center text-sm font-bold text-[#ff9500] hover:text-amber-700">
+              Đọc trọn vẹn 10 trang &rarr;
+            </button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div>
+              <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-3">
+                Phiên 2 · Mới Nhất
+              </span>
+              <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">Thư Sau Phiên 2</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                Chạm vào The Shadow, giải mã phóng chiếu con gián (Kinh tởm, Thấp hèn, Chui rúc, Dơ bẩn), 3 bài tập và mục tiêu Phiên 3.
+              </p>
+            </div>
+            <button onclick="switchTab('letter2')" class="inline-flex items-center text-sm font-bold text-[#1992b0] hover:text-sunny-dark">
+              Đọc toàn văn thư &rarr;
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 2: TOÀN VĂN THƯ SAU PHIÊN 1 (5 TRANG NGUYÊN BẢN) -->
+      <!-- ======================================================== -->
+      <div id="letter1" class="tab-pane space-y-6">
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm letter-card">
+          <img src="header.png" alt="SunnyCare Banner" class="w-full h-auto object-cover rounded-xl mb-6 shadow-sm border border-slate-100 no-print">
+          
+          <div class="border-b border-slate-100 pb-6 mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-2">
+                Thư Sau Phiên 1 (Tiếp nhận)
+              </span>
+              <h2 class="font-serif font-bold text-2xl text-slate-800">THƯ GỬI HUYỀN PHƯƠNG - SAU PHIÊN 1</h2>
+              <div class="text-xs text-slate-500 italic mt-1">Người gửi: Anh Trần Thiện · Trợ lý tinh thần của Huyền Phương</div>
+            </div>
+            <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-white bg-[#1992b0] hover:bg-sunny-dark shadow-sm transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              In Bản Thư Này
+            </button>
+          </div>
+
+          <div class="text-slate-700 space-y-5 text-justify leading-relaxed text-base">
+            <div class="font-serif font-bold text-lg text-[#1992b0]">Em Huyền Phương thân mến,</div>
+
+            <p>Trước hết, anh muốn chúc mừng em. Em đã rất dũng cảm khi giành lại QUYỀN KIỂM SOÁT cho cuộc đời mình bằng một việc vốn không hề dễ dàng: block hai người bạn trong app. Đó không chỉ là một thao tác trên ứng dụng. Đó là một lựa chọn để bảo vệ ranh giới, tiếng nói và quyền quyết định của chính em. Trong khoảnh khắc ấy, em đã nói với bản thân rằng: <em>“Tôi có quyền chọn điều gì được bước vào cuộc sống của mình, và điều gì thì không.”</em></p>
+
+            <div class="bg-sunny-light border-l-4 border-[#1992b0] p-4 rounded-r-lg text-sm text-slate-700">
+              <strong>Điều đáng ghi nhận:</strong> Em không cần phải giải thích hay làm hài lòng tất cả mọi người để được tôn trọng. Việc bảo vệ mình cũng là một cách trân trọng chính mình.
+            </div>
+
+            <p>Anh cũng muốn cảm ơn em vì đã hiện diện trọn vẹn trong buổi tham vấn hôm nay. Sự hiện diện ấy rất đáng quý, đặc biệt khi phong cách thường ngày của em là đa nhiệm, luôn có nhiều điều phải nghĩ đến và nhiều việc cần hoàn thành. Việc em dừng lại, lắng nghe mình và ở lại với cuộc trò chuyện là một nỗ lực rất đáng trân trọng. Đôi khi, chỉ riêng việc cho phép bản thân chậm lại cũng đã là một hành động của KIÊN ĐỊNH và chăm sóc bản thân.</p>
+
+            <h3 class="font-serif font-bold text-xl text-[#1992b0] pt-4 border-b border-slate-100 pb-2">Nhìn lại những nhu cầu đang lên tiếng</h3>
+            <p>Tháp nhu cầu Maslow có thể được hiểu một cách gần gũi như một bản đồ về những điều con người cần để sống, kết nối và phát triển. Từ những nhu cầu sinh lý, an toàn và cơ bản ở các tầng đầu tiên, chúng ta dần hướng đến nhu cầu được yêu thương, được tôn trọng, được thể hiện bản thân và sống đúng với tiềm năng của mình ở những tầng cao hơn.</p>
+            
+            <p>Theo cách gọi trong buổi tham vấn, hiện tại em đang nhận ra một mâu thuẫn giữa <strong>Tầng 1 – nhu cầu sinh lý/cơ bản</strong> và <strong>Tầng 6 – nhu cầu thể hiện bản thân/tôn trọng</strong>. Hai nhu cầu này không loại trừ nhau. Cả hai đều là những phần có thật và xứng đáng được lắng nghe:</p>
+
+            <ul class="list-disc pl-6 space-y-2">
+              <li><strong>Tầng 1 · Nhu cầu cơ bản:</strong> Nhu cầu thân thể, sự gần gũi, khoái cảm và những cảm nhận rất tự nhiên của cơ thể.</li>
+              <li><strong>Tầng 6 · Thể hiện và tôn trọng:</strong> Khát khao được nhìn thấy, được công nhận, được thấu hiểu và được sống đúng với con người mình.</li>
+            </ul>
+
+            <p>Có thể em đang có xu hướng tìm kiếm sự ghi nhận thông qua hoạt động tình dục. Nhu cầu thân thể là có thật, và không có gì đáng xấu hổ trong việc thừa nhận điều đó. Đồng thời, phía sau nhu cầu ấy có thể còn là một khát khao sâu hơn: được nhìn thấy, được công nhận, được thấu hiểu và được thể hiện con người mình. Anh không muốn gắn nhãn hay phán xét em. Điều quan trọng chỉ là em có thêm một góc nhìn dịu dàng để nhận ra mình thật sự đang tìm kiếm điều gì. Khi hiểu được nhu cầu phía sau một lựa chọn, em sẽ có nhiều tự do hơn để chọn cách đáp ứng nhu cầu ấy phù hợp với phẩm giá và giá trị của mình.</p>
+
+            <p>Em không cần phải phủ nhận ham muốn, cũng không cần ép mình trở thành một người hoàn hảo. Em chỉ đang học cách để mọi lựa chọn của mình đến từ sự sáng rõ, thay vì từ cảm giác thiếu thốn hoặc mong muốn được xác nhận ngay lập tức.</p>
+
+            <h3 class="font-serif font-bold text-xl text-[#1992b0] pt-4 border-b border-slate-100 pb-2">“Bộ lọc” trước những lựa chọn quen thuộc</h3>
+            <p>Em tự nhận ra rằng bản thân dễ dàng bước vào một mối quan hệ từ ĐAM MÊ và TÌNH DỤC, như một cánh cửa nhanh dẫn đến cảm giác kết nối hoặc được xác nhận. Cánh cửa ấy không phải là điều cần bị cấm đoán; chỉ là đôi khi nó khiến em đi rất nhanh đến một mối quan hệ trước khi kịp hỏi xem trái tim và những giá trị sâu hơn của mình đang cần gì. Ở bên trong, khát khao sâu hơn của em có thể là được GHI NHẬN, được thấu hiểu và được thể hiện bản thân.</p>
+
+            <p>Vì vậy, anh muốn giới thiệu với em hình ảnh một <strong>“Bộ lọc”</strong>: một khoảng dừng nhỏ giúp em ngăn thói quen cũ tự động dẫn đường. Mỗi khi nhận ra mình sắp bước vào thói quen ấy, em có thể dừng lại, thở chậm và tự hỏi:</p>
+
+            <div class="bg-amber-50/60 border-l-4 border-[#ff9500] p-4 rounded-r-lg space-y-2 text-sm">
+              <p>• <em>“Điều tôi thật sự đang cần lúc này là gì: khoái cảm, sự gần gũi, sự ghi nhận, hay cảm giác mình có giá trị?”</em></p>
+              <p>• <em>“Lựa chọn này có đưa tôi đến gần hơn với người tôi muốn trở thành không?”</em></p>
+              <p>• <em>“Tôi đang được nhìn thấy và tôn trọng, hay đang cố gắng dùng cơ thể để giành lấy sự công nhận?”</em></p>
+              <p>• <em>“Nếu tạm gác đam mê và tình dục sang một bên, tôi còn muốn hiểu điều gì về con người này và về chính mình?”</em></p>
+              <p>• <em>“Phẩm chất và giá trị nào của tôi đang cần được bảo vệ ngay lúc này?”</em></p>
+            </div>
+
+            <p>Khoảng dừng này không phải là sự kiểm soát hay cấm đoán bản thân. Đó là cách em tự kéo mình quay lại với chính mình trước khi quyết định, để ham muốn, sự gần gũi và nhu cầu được ghi nhận có thể được đặt trong một lựa chọn sáng rõ hơn.</p>
+
+            <h3 class="font-serif font-bold text-xl text-[#1992b0] pt-4 border-b border-slate-100 pb-2">Những điều tốt đẹp đã luôn hiện diện trong em</h3>
+            <p>Anh muốn nhắc lại những phẩm chất và giá trị đang có trong Huyền Phương. Chúng không phải là những điều xa vời cần phải đạt đến; chúng đã xuất hiện trong lựa chọn block hai người bạn và trong khả năng em nhìn thẳng vào mâu thuẫn nội tâm của mình:</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <span class="font-bold text-[#1992b0]">PHẨM CHẤT:</span> KIÊN ĐỊNH · TÌNH YÊU · TRÁCH NHIỆM
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <span class="font-bold text-[#ff9500]">GIÁ TRỊ:</span> TRUYỀN CẢM HỨNG · TỰ DO – LÀM CHỦ · THÍCH TRẢI NGHIỆM
+              </div>
+            </div>
+
+            <p>Sự KIÊN ĐỊNH của em thể hiện trong những quyết định của em. TÌNH YÊU em thể hiện sự trắc ẩn với một mảnh đời không may mắn. TRÁCH NHIỆM hiện diện khi em chủ động nhìn vào lựa chọn của mình và nhận phần quyền quyết định về tay mình.</p>
+
+            <h3 class="font-serif font-bold text-xl text-[#1992b0] pt-4 border-b border-slate-100 pb-2">Bài tập thực hành sau Phiên 1</h3>
+            <p><strong>1. Giành lại sự KIỂM SOÁT và TỰ DO:</strong> Trong những lần trò chuyện với người trên app, em hãy thử cố định thời gian cho cuộc trò chuyện (15-20 phút). Khi hết giờ, chủ động kết thúc, đặt điện thoại xuống và chuyển sang việc chăm sóc bản thân (uống nước, đi bộ, nghe nhạc). Em vẫn được kết nối, nhưng em là người quyết định khi nào bắt đầu và dừng lại.</p>
+            <p><strong>2. Ghi nhận những việc làm nhỏ nhất:</strong> Cuối ngày dùng checklist ngắn để nhận ra những điều mình đã làm được. Sau mỗi việc hoàn thành, gắn nó với một hành động cơ thể nhỏ: vỗ nhẹ vào vai, mỉm cười và hít thở sâu.</p>
+
+            <p class="pt-4">Huyền Phương thân mến, em không cần phải thay đổi tất cả trong một ngày. Mỗi lựa chọn nhỏ có ý thức đều đang đưa em trở về với quyền làm chủ, với phẩm giá và với sự tự do của mình. Anh tin em có khả năng xây dựng những mối quan hệ bắt đầu từ sự tôn trọng, thấu hiểu và lựa chọn tự do. Em có thể vừa lắng nghe cơ thể, vừa bảo vệ trái tim; vừa đón nhận trải nghiệm, vừa giữ quyền quyết định thuộc về mình.</p>
+
+            <div class="pt-6 border-t border-slate-200 mt-6">
+              <p class="italic text-slate-600 text-sm">Lịch hẹn tiếp theo: Thứ 7, ngày 31/10.<br>Chúc em một buổi tối thật nhẹ nhàng. Mong em nhớ rằng em không hề đơn độc trên hành trình trở về với chính mình.</p>
+              <div class="font-serif font-bold text-[#1992b0] text-lg mt-3">Anh Trần Thiện</div>
+              <div class="text-xs text-slate-500 italic">Trợ lý tinh thần của Huyền Phương</div>
+            </div>
+          </div>
+
+          <!-- Next Step Navigation Card -->
+          <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 no-print bg-amber-50/50 -mx-8 -mb-8 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-2xl">
+            <div class="text-left w-full sm:w-auto">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Bước tiếp theo trong hồ sơ</span>
+              <div class="font-serif font-bold text-base text-slate-800">Tâm Thư Của Thân Chủ Đặng Huyền Phương (10 Trang)</div>
+              <p class="text-xs text-slate-500 mt-0.5">Bức tự truyện bộc bạch tuổi thơ, thủ khoa đại học, biến cố tuổi 19 và 7 mô thức vô thức.</p>
+            </div>
+            <button onclick="switchTab('letter-client')" class="relative inline-flex h-11 items-center justify-center rounded-full bg-[#ff9500] hover:bg-amber-600 px-6 text-sm font-bold text-white transition-all shadow-md shadow-amber-500/20 flex-shrink-0 group w-full sm:w-auto">
+              <span>Đọc Thư Tiếp Theo</span>
+              <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 3: TÂM THƯ CỦA HUYỀN PHƯƠNG (TOÀN VĂN 10 TRANG) -->
+      <!-- ======================================================== -->
+      <div id="letter-client" class="tab-pane space-y-6">
+        <div class="bg-white rounded-2xl border border-amber-200/70 p-8 sm:p-10 shadow-sm letter-card">
+          <img src="header.png" alt="SunnyCare Banner" class="w-full h-auto object-cover rounded-xl mb-6 shadow-sm border border-slate-100 no-print">
+          
+          <div class="border-b border-amber-100 pb-6 mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-[#ff9500] mb-2">
+                Tâm Thư Gửi Trước Phiên 2 · Nguyên Bản 10 Trang
+              </span>
+              <h2 class="font-serif font-bold text-2xl text-slate-800">THƯ GỬI ANH THIỆN - ĐẶNG HUYỀN PHƯƠNG</h2>
+              <div class="text-xs text-slate-500 italic mt-1">Ngày viết: 28 tháng 10 năm 2026 · Tác giả: Đặng Huyền Phương</div>
+            </div>
+            <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-white bg-[#ff9500] hover:bg-amber-600 shadow-sm transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              In Bản Thư Này
+            </button>
+          </div>
+
+          <div class="text-slate-700 space-y-5 text-justify leading-relaxed text-base">
+            <div class="font-serif font-bold text-lg text-[#ff9500]">Anh Thiện thân mến,</div>
+
+            <p>Trước hết, em muốn cảm ơn anh thật nhiều vì những lời chia sẻ và động viên trong lá thư trước đó! Em cảm thấy mình thật may mắn khi cuối cùng đã quyết định nghiêm túc nhìn nhận lại bản thân và bắt đầu hành trình tham vấn tâm lý tại Sunny, dù trước đó đã đắn đo khá lâu vì những cảm xúc thất thường và guồng quay công việc bận rộn.</p>
+
+            <p>Buổi trò chuyện đầu tiên đã mang đến cho em một lăng kính hoàn toàn mới để nhìn nhận những trải nghiệm cá nhân. Trước đây, em vẫn luôn nghĩ mình hiểu rõ bản thân, có khả năng quan sát, suy luận và phân tích tốt. Em có thể dành hàng giờ tìm hiểu động cơ hành vi, lý giải những mâu thuẫn trong tâm lý con người, kể cả chính mình. Nhưng rồi em nhận ra rằng, có khả năng phân tích không đồng nghĩa với việc hiểu đúng bản chất vấn đề. Có lẽ em đã dành quá nhiều thời gian dùng khoa học và lý thuyết để giải thích những gì mình làm, nhưng lại chưa thực sự thấu hiểu động cơ, ý nghĩa và những nhu cầu sâu xa phía sau các lựa chọn ấy.</p>
+
+            <p>Điều khiến em ấn tượng nhất là cuộc trò chuyện hôm ấy vẫn tiếp tục vang vọng trong tâm trí, ngay cả khi em đã trở về với nhịp sống thường ngày. Em bắt đầu chất vấn những điều tưởng chừng đã có câu trả lời: <em>Rốt cuộc con người thật của em là ai? Điều gì đang âm thầm dẫn dắt những hành vi và lựa chọn của em? Những thứ em theo đuổi thực sự xuất phát từ mong muốn cá nhân, hay đôi khi chỉ là cách tìm kiếm sự công nhận từ người khác? Sứ mệnh thực sự của em là gì? Em được sinh ra hay bị sinh ra?</em></p>
+
+            <p>Thật kỳ lạ, những câu hỏi ấy không khiến em bế tắc mà ngược lại, như nhóm lên một ngọn lửa đã nguội lạnh từ lâu. Em bỗng có động lực nhìn lại hành trình nhiều chông gai của mình, từ những năm tháng tuổi thơ cho đến hiện tại. Những thành tựu từng khiến em tự hào, những lần vượt qua khó khăn, những cơ hội may mắn, sự yêu thương và ưu ái em từng nhận được, cùng những lý tưởng một thời theo đuổi mãnh liệt, tất cả lần lượt ùa về như một cánh cửa ký ức lâu ngày không mở bỗng được đẩy ra. Suốt một khoảng thời gian, em đã để bản thân bị cuốn theo những suy nghĩ tiêu cực, đam mê, ham muốn nhất thời, những trải nghiệm đầy kích thích và cả chiếc bẫy phải liên tục chứng minh giá trị bản thân. Em mải tìm kiếm cảm giác và sự công nhận từ bên ngoài mà dần quên lắng nghe chính mình. Em không muốn phủ nhận những trải nghiệm ấy, bởi dù tốt hay xấu, chúng đều góp phần tạo nên con người em hôm nay. Nhưng liệu có những lúc em đã đi quá xa khỏi những giá trị và lý tưởng vốn dĩ mình luôn theo đuổi?</p>
+
+            <div class="bg-amber-50 border-l-4 border-[#ff9500] p-4 rounded-r-lg text-sm text-slate-800 italic">
+              Em chợt nhớ đến một quan điểm của Carl Gustav Jung: <strong>“Con người không đạt đến sự khai sáng bằng cách tưởng tượng ra ánh sáng, mà bằng cách đưa bóng tối trong chính mình ra trước ý thức.”</strong> Câu nói ấy dường như phản chiếu chính những gì em đang trải qua. Có lẽ bấy lâu nay, em đã quá chú tâm xây dựng hình ảnh một con người độc lập, bản lĩnh, thông minh, có năng lực và làm chủ cuộc đời, đến mức bỏ quên những phần bóng tối chưa được thấu hiểu bên trong mình: nỗi bất an, lòng tự ái, cái tôi cao, những ham muốn khó lý giải, sự yếu đuối và cả nỗi sợ không được công nhận. Em từng nghĩ chỉ cần đủ lý trí và khả năng kiểm soát thì có thể gạt bỏ chúng. Nhưng liệu việc đè nén bóng tối có thực sự khiến nó biến mất, hay chỉ khiến nó âm thầm tích tụ rồi quay lại mãnh liệt hơn?
+            </div>
+
+            <p>Em bắt đầu hiểu rằng ánh sáng và bóng tối chưa bao giờ hoàn toàn tách biệt. Chúng cùng tồn tại, đối lập và đôi khi vô thức chi phối lẫn nhau. Nếu chỉ chăm chút cho những phẩm chất tốt đẹp mà từ chối đối diện với góc khuất, liệu em có đang tạo ra một hình ảnh lý tưởng thay vì thực sự hiểu mình? Em không muốn dùng lý trí để biện minh cho mọi lựa chọn, cũng không muốn lấy những sai lầm trong quá khứ để phủ nhận bản thân. Điều em muốn là hiểu tại sao chúng xuất hiện, điều gì nuôi dưỡng chúng và vì sao có những hành vi cứ lặp đi lặp lại dù em ý thức được hệ quả. Đó cũng là lý do em cảm thấy mình thực sự cần một người đồng hành về tinh thần ở giai đoạn này, để từng bước tháo gỡ những mâu thuẫn nội tâm và tiếp tục theo đuổi những lý tưởng lớn lao của cuộc đời mình. Em vốn sinh ra để làm những điều vĩ đại hơn cho cuộc sống chứ không chỉ là sắc dục tầm thường.</p>
+
+            <p>Có lẽ món quà quý giá nhất từ buổi tham vấn đầu tiên chính là động lực để em quay về tìm hiểu bản thân một cách chân thành hơn. Em bắt đầu quan sát những cảm xúc nhỏ nhặt, chú ý đến phản ứng của mình trước từng tình huống và tập sống chậm lại thay vì để mọi thứ trôi theo quán tính. Càng nhìn lại, em càng nhận ra có quá nhiều điều về chính mình chưa thực sự hiểu hết. Điều đó vừa khiến em tò mò, vừa khơi dậy sự hào hứng với hành trình sắp tới.</p>
+
+            <p>Ban đầu, em định giữ những suy nghĩ này đến buổi hẹn tiếp theo mới chia sẻ. Nhưng trong đầu em đang có quá nhiều ký ức, câu chuyện và những nút thắt đan xen. Đặc biệt, em biết mình có xu hướng cuốn người khác theo dòng cảm xúc và câu chuyện của bản thân, đôi khi nói quá nhiều mà thiếu kiên nhẫn lắng nghe. Em sợ khi ngồi đối diện anh sẽ lại mải mê kể chuyện, không biết bắt đầu từ đâu rồi bỏ sót những điều quan trọng. Vì vậy, em quyết định viết lá thư này, thử chọn ra những điểm đặc biệt đáng chú ý nhất như một số trải nghiệm, niềm tự hào, hoặc suy nghĩ và hành vi của mình để bày tỏ. Hy vọng những chia sẻ này giúp anh hiểu thêm về thế giới nội tâm của em trước buổi gặp tiếp theo, để hai anh em có thể cùng đi sâu vào từng câu chuyện, tìm hiểu động cơ phía sau các hành vi và từng bước tháo gỡ những nút thắt còn bỏ ngỏ. Em biết hành trình này sẽ dài và không phải lúc nào cũng dễ chịu, nhưng sau buổi gặp đầu tiên, em đã thực sự háo hức với việc khám phá lại chính mình. Không phải để trở thành một phiên bản hoàn hảo hơn trong mắt người khác, mà để một ngày nào đó, em có thể thực sự hiểu, chấp nhận và trân trọng con người mình.</p>
+
+            <h3 class="font-serif font-bold text-xl text-[#ff9500] pt-4 border-b border-amber-100 pb-2">I. NHỮNG ĐIỀU KHIẾN EM TỰ HÀO VỀ BẢN THÂN</h3>
+
+            <h4 class="font-bold text-base text-slate-800">1. Bông hoa dại lớn lên giữa rừng chông gai</h4>
+            <p>Điều đầu tiên khiến em tự hào chính là nội lực sống mãnh liệt và ý chí không chịu khuất phục trước nghịch cảnh. Em sinh ra trong một gia đình nhiều thiếu thốn và bất ổn. Bố mẹ đều là giáo viên nhà nước, quanh năm chật vật với cơm áo, nợ nần và những vấn đề hỗn loạn từ quá khứ. Chính bố mẹ cũng không phải lúc nào cũng đủ ổn định về cảm xúc để yêu thương và nuôi dạy em đúng mực. Tuổi thơ em chẳng có nhiều bình yên, phải theo cha mẹ tha hương cầu thực, sống xa ông bà, họ hàng và những điểm tựa quen thuộc.</p>
+            <p>Em từng tự hỏi tại sao xuất phát điểm của mỗi người lại khác nhau đến thế. Có những đứa trẻ sinh ra đã được bao bọc, giàu có và có chỗ dựa vững chắc. Còn em, dường như chẳng có gì ngoài chính mình và ý chí không chịu khuất phục. Em vẫn hình dung bản thân như một bông hoa dại mọc giữa vùng đất cằn cỗi, ai cho nắng thì nhận nắng, ai cho mưa thì nhận mưa, cứ thế bám rễ mà lớn lên. Từ nhỏ, em đã chịu những lời cười chê vì quần áo rách cũ, dụng cụ học tập mục nát, thậm chí có lúc ăn mặc, sinh hoạt còn là nỗi lo. Nhưng càng bị coi thường, khát vọng vươn lên trong em càng mãnh liệt. Năm cấp hai, chỉ vì vài lời xỉa xói về năng lực, em đã quyết tâm học và giành giải Nhất học sinh giỏi cấp tỉnh môn Tiếng Anh, đồng thời đạt những thành tích nổi bật ở môn Văn.</p>
+            <p>Biến cố lớn nhất xảy ra khoảng một tháng trước kỳ thi tốt nghiệp THPT, khi bố em bị những người xã hội đen truy đuổi, đe dọa đòi nợ. Họ còn trực tiếp nhắn tin đe dọa em, bôi nhọ danh dự trước bạn bè, thậm chí vu khống em bằng những thông tin nhạy cảm, xúc phạm nhân phẩm như việc làm gái. Giữa thời điểm quan trọng nhất của tuổi học trò, em vừa phải ôn thi, vừa gánh chịu những nỗi sợ và tổn thương vượt ngoài khả năng kiểm soát. Thế nhưng em vẫn tiếp tục học. Không than trách số phận, không đóng vai nạn nhân hay đổ lỗi cho gia đình! Em không thể thay đổi tình thế, nhưng vẫn có thể nắm giữ tương lai bằng chính nỗ lực của mình. Cuối cùng, em trở thành thủ khoa khối D của huyện trong kỳ thi tốt nghiệp THPT. Đậu vào Đại học Kinh tế TP.HCM hàng đầu miền nam. Đó không chỉ là một thứ hạng, mà là câu trả lời đanh thép trước những lời coi thường, là minh chứng cho bao năm kiên trì. Số mệnh phải do em tự quyết định, không ai có quyền bắt em phải sống một cuộc đời như thế nào.</p>
+            <p>Điều em tự hào nhất không phải giải thưởng hay danh hiệu, mà là bản năng sinh tồn, tính kỷ luật và ý chí vươn lên giữa nghịch cảnh. Cuộc sống càng vùi dập, quyết tâm thành công trong em càng mãnh liệt. Em không chấp nhận để nghèo khó, bất hạnh hay sai lầm của thế hệ trước định đoạt tương lai mình. Dù là thần linh, ông trời hay bất kỳ số mệnh nào được cho là an bài, tất cả đều phải lùi bước trước sự lựa chọn của em! Tuy nhiên, em bắt đầu tự hỏi: Liệu khát vọng thành công ấy xuất phát từ mong muốn phát triển bản thân, hay sâu bên trong vẫn còn một đứa trẻ từng bị coi thường, luôn cố chứng minh mình đủ xuất sắc và xứng đáng được tôn trọng? Có phải em cần phải thật giỏi, thật có giá trị thì mới xứng đáng được yêu thương? Liệu có những tổn thương từ quá khứ vẫn âm thầm nuôi dưỡng động lực ấy đến hôm nay?</p>
+
+            <h4 class="font-bold text-base text-slate-800">2. Sự bùng nổ về nhận thức và hành trình tìm lại chính mình</h4>
+            <p>Năm 19 tuổi, em gặp một người đàn ông mà em cho rằng có xu hướng ái kỷ, thao túng tâm lý và nhiều lần lợi dụng tình cảm, thể xác của em để thỏa mãn ham muốn cá nhân. Trớ trêu thay, anh ta lại là người đầu tiên khiến em cảm thấy mình được nhìn thấy và công nhận. Anh ta hiểu tâm lý em, luôn khen ngợi sự thông minh, ngoại hình, năng lực học tập, ý chí và những phẩm chất mà chính em cũng chưa nhận thức đầy đủ. Cảm giác ấy giống như có người lần đầu tiên mở chiếc rương kho báu mà ngay cả chủ nhân của nó cũng không biết bên trong chứa những gì. Ở tuổi 19, thế giới nội tâm của em vô cùng hỗn loạn. Em chưa nhận thức rõ giá trị bản thân, thường để cảm xúc và những thôi thúc vô thức chi phối hành vi, dễ nổi nóng, buông lời cay nghiệt hay làm căng thẳng các mối quan hệ chỉ vì những chuyện nhỏ nhặt. Người đàn ông ấy xuất hiện, trao cho em cảm giác được thấu hiểu rồi dần khiến em phụ thuộc sâu sắc về mặt cảm xúc, lợi dụng sự gắn bó ấy để tìm đến em mỗi khi muốn thỏa mãn nhu cầu tình dục, bất chấp những tổn thương em phải chịu.</p>
+            <p>Nhưng em không để trải nghiệm ấy đánh gục mình. Em không đánh mất niềm tin vào bản thân, càng không chọn kết thúc cuộc sống vì một người đối xử tệ với mình. Ngược lại, những đau khổ và mâu thuẫn đã thôi thúc một cuộc bùng nổ về nhận thức. Dường như càng bị đẩy vào nghịch cảnh, em càng phải phá vỡ những giới hạn tư duy cũ để tái sinh thêm một lần nữa. Lần đầu tiên sau 19 năm, em nghiêm túc nhìn lại cuộc đời mình, bắt đầu nghiên cứu về vô thức, phân tâm học của Sigmund Freud, Carl Jung, khái niệm Shadow và những cơ chế tâm lý chi phối hành vi. Em muốn hiểu tại sao một người có khả năng suy luận tốt như mình lại có thể mù quáng trong tình cảm, nhận ra những dấu hiệu bất thường mà vẫn khó rời đi. Tại sao sự công nhận của một người đàn ông lại có sức ảnh hưởng lớn đến cảm xúc và giá trị bản thân em đến thế? Tại sao em lại bị ám ảnh với anh ta? Từng chút một, em bắt đầu nhận diện những mâu thuẫn giữa lý trí, cảm xúc và ham muốn, đối diện với sự phụ thuộc cảm xúc và cuối cùng đủ tỉnh táo để rời bỏ người đàn ông ấy. Em đã tự kéo mình ra khỏi một mối quan hệ từng khiến bản thân đánh mất phương hướng, như bước ra từ đống tro tàn và học cách sống lại một lần nữa.</p>
+            <p>Điều khiến em tự hào không phải là đã gặp một người khiến mình thay đổi, mà là dù bị tổn thương sâu sắc, em vẫn có khả năng tự phản tỉnh, mở rộng nhận thức và tìm đường trở về với chính mình. Em không biết ơn sự thao túng hay những tổn thương anh ta gây ra, nhưng trân trọng những gì mình đã nỗ lực học được. Em đã trưởng thành hơn rất nhiều, dù có lẽ hiểu được sự tồn tại của bóng tối vẫn chưa đồng nghĩa với việc đã thực sự bước ra khỏi nó.</p>
+
+            <h4 class="font-bold text-base text-slate-800">3. Niềm đam mê truyền cảm hứng và khát vọng đóng góp cho cộng đồng</h4>
+            <p>Một trong những điều khiến em tự hào nhất là niềm đam mê truyền cảm hứng và mong muốn tạo ra giá trị cho cộng đồng. Em yêu cảm giác được đứng trên sân khấu, chia sẻ những trải nghiệm, chiêm nghiệm của mình, dẫn dắt và giúp người khác tìm thấy ánh sáng, động lực trong cuộc sống. Thời cấp ba, em từng tự thành lập và làm chủ tịch một câu lạc bộ Tiếng Anh tại trường. Nơi em sống là vùng quê nghèo, điều kiện tiếp cận ngoại ngữ hạn chế, thậm chí năng lực chuyên môn của một số thầy cô còn chưa đáp ứng tốt nhu cầu học tập. Em cảm thấy mình phải làm điều gì đó để thay đổi, để học sinh được học Tiếng Anh bằng đam mê thay vì điểm số hay sự ép buộc.</p>
+            <p>Điều thú vị là em cũng chẳng hiểu mình lấy đâu ra tư duy kinh doanh, kỹ năng tổ chức và quản lý ấy. Em tự xây dựng mô hình, thuyết phục nhà trường cấp kinh phí và vận hành câu lạc bộ như một doanh nghiệp thu nhỏ. Từ marketing, thiết kế, truyền thông, tuyển thành viên, làm MC, mời người nước ngoài giao lưu đến tổ chức lễ hội ẩm thực, tranh biện, tặng quà và hợp tác biểu diễn với câu lạc bộ Âm nhạc của trường khác, em gần như tự tay đảm nhận mọi việc. Câu lạc bộ phát triển đến hơn 100 thành viên, tạo ra doanh thu và lợi nhuận từ các hoạt động để em phụ giúp gia đình, tự mua sắm tài liệu học tập. Sau khi em rời trường, thầy cô gặp nhiều khó khăn trong việc tìm người kế nhiệm. Đến tận năm 21 tuổi, vẫn có những học sinh cấp hai, cấp ba ở huyện tìm đến bố mẹ em để xin gặp, xin số điện thoại và nhờ tư vấn.</p>
+            <p>Nhưng niềm hạnh phúc lớn nhất không nằm ở quy mô, lợi nhuận hay vị trí chủ tịch, mà ở cảm giác được sống đúng đam mê truyền lửa và chứng kiến người khác tiến bộ. Em yêu việc chia sẻ kinh nghiệm, hướng dẫn học sinh lựa chọn ngành nghề, định hướng tương lai, đặc biệt là giúp các bạn vượt qua nỗi sợ học Tiếng Anh, từ tự ti trở nên hào hứng và tự tin hơn. Đó cũng là giai đoạn em nhận thức rõ khả năng lãnh đạo, tư duy kinh doanh và khát vọng tạo ảnh hưởng tích cực. Em không chỉ muốn tự vượt qua giới hạn hoàn cảnh, mà còn muốn mở ra những cánh cửa mới cho người khác. Đôi khi em thực sự cảm thấy mình sinh ra để theo đuổi những sứ mệnh lớn lao, và mọi thử thách đều đang dẫn dắt em đến gần lý tưởng ấy. Nếu ở câu chuyện đầu tiên, em tự hào vì đã kéo chính mình ra khỏi nghịch cảnh, thì ở câu chuyện này, em tự hào vì có thể trở thành động lực giúp người khác tiến về phía trước. Tuy nhiên, em vẫn muốn hiểu động lực phía sau niềm đam mê ấy. Liệu em khao khát truyền cảm hứng vì thực sự muốn đóng góp cho cộng đồng, hay đâu đó còn có nhu cầu được công nhận, ngưỡng mộ và cảm thấy bản thân có sức ảnh hưởng? Đó đơn thuần là đam mê và khả năng lãnh đạo tự nhiên, hay còn phản ánh một nhu cầu tâm lý sâu xa nào khác?</p>
+
+            <h4 class="font-bold text-base text-slate-800">4. Năng lực học hỏi, tư duy sắc bén và khát vọng tự kiến tạo sự nghiệp</h4>
+            <p>Một điều khác khiến em tự hào là khả năng học hỏi, thích nghi và tư duy thực tế của mình. Dù không có nền tảng gia đình vững chắc hay những mối quan hệ nâng đỡ, em vẫn luôn chủ động tích lũy kiến thức, ngoại ngữ, phát triển năng lực và định hướng sự nghiệp từ sớm. Ở tuổi 21, khi chưa tốt nghiệp đại học, em đã được tuyển vào một tập đoàn hóa chất lớn của Trung Quốc với mức thu nhập khá tốt. Điều đặc biệt là vị trí này vốn ưu tiên kỹ sư, người có chuyên môn hóa chất và độ tuổi tối thiểu 25-26. Dù gần như không đáp ứng những tiêu chí ấy, em vẫn thuyết phục được ban lãnh đạo đặc cách tuyển em bằng khả năng sử dụng 3 ngôn ngữ, tư duy kinh doanh, sự tự tin và khả năng ứng biến cực tốt. Em cũng phần nào mang đến một làn gió mới trong phong cách làm việc của môi trường vốn có nhiều người đi theo lối mòn cũ kỹ.</p>
+            <p>Bước vào một ngành hoàn toàn mới, em chủ động học hỏi, tự bơi trong mọi thứ. Trong khi bản thân em chỉ là sinh viên từ kinh tế, không có biết gì về hóa chất nhưng vẫn làm được và có thành tựu. Em không xem công việc hiện tại là đích đến cuối cùng, mà đang tiếp tục nghiên cứu tài chính, theo đuổi các chứng chỉ chuyên môn để hướng tới việc tự kinh doanh, làm chủ tài chính và tạo ra những giá trị lớn hơn trong tương lai. Tuy nhiên, em cũng nhận ra một mâu thuẫn: Em thực sự đam mê học hỏi, kinh doanh và phát triển năng lực, nhưng đồng thời lại quá khao khát trở thành người xuất sắc, thành công và được ngưỡng mộ. Em dễ tự hào khi mình bận rộn, đạt thành tựu, nhưng thiếu kiên nhẫn với những giai đoạn chậm rãi hoặc chưa có kết quả rõ rệt. Em muốn thành công, nhưng không muốn cả cuộc đời trở thành một cuộc chạy đua bất tận để chứng minh rằng mình xứng đáng được công nhận.</p>
+
+            <h3 class="font-serif font-bold text-xl text-[#ff9500] pt-4 border-b border-amber-100 pb-2">II. NHỮNG MÔ THỨC HÀNH VI TIÊU CỰC LẶP ĐI LẶP LẠI</h3>
+
+            <h4 class="font-bold text-base text-slate-800">1. Luôn tìm kiếm sự công nhận và chứng minh giá trị bản thân</h4>
+            <p>Em có xu hướng muốn thể hiện mình là người giỏi giang, bận rộn, có thành tựu và được người khác ngưỡng mộ, kể cả trong công việc lẫn tình cảm. Đôi khi em vô thức đánh giá những người sống nhàn rỗi, tự do, trải nghiệm, yếu đuối là kém cỏi vì không theo đuổi thành công theo tiêu chuẩn của em đề ra. Em đặc biệt nhạy cảm với những lời chê bai, coi thường hay xúc phạm danh dự. Càng bị đánh giá thấp, em càng muốn chứng minh năng lực, đôi khi đến mức bị cuốn vào chiếc bẫy phải liên tục khẳng định giá trị bản thân.</p>
+
+            <h4 class="font-bold text-base text-slate-800">2. Bị hấp dẫn bởi những mối quan hệ mãnh liệt, kích thích và thiếu ổn định</h4>
+            <p>Em dễ bị cuốn vào những mối quan hệ có sự bất ngờ, nguy hiểm, bí mật, không ràng buộc hoặc mang lại cảm xúc cao trào. Càng có yếu tố cấm đoán, che giấu, em đôi khi càng cảm thấy hứng thú. Ngược lại, những mối quan hệ tình cảm bình thường, ổn định và phát triển chậm rãi lại dễ khiến em nhàm chán, thiếu kiên nhẫn tìm hiểu và xây dựng sự gắn bó lâu dài. Em thường bị thu hút bởi cường độ cảm xúc mạnh, ngay cả khi nhận thức được những rủi ro đi kèm.</p>
+
+            <h4 class="font-bold text-base text-slate-800">3. Mâu thuẫn giữa nhu cầu kiểm soát và khao khát được trao quyền trong BDSM</h4>
+            <p>Ngoài đời, em luôn muốn độc lập, làm chủ tình huống, suy nghĩ, tính toán và chịu trách nhiệm cho mọi quyết định. Nhưng trong đời sống tình dục, em lại thích BDSM, sự phục tùng, trao quyền kiểm soát và cả cảm giác bị hạ thấp hoặc làm nhục trong giới hạn tự nguyện, đồng thuận. Đôi khi em chỉ muốn được “tắt nguồn”, ngừng phải suy nghĩ và kiểm soát mọi thứ, để một người đủ tin cậy dẫn dắt, quan tâm, bảo vệ và chăm sóc mình.</p>
+
+            <h4 class="font-bold text-base text-slate-800">4. Cái tôi mạnh, thích kiểm soát và phản ứng phòng vệ khi bị chạm đến điểm yếu</h4>
+            <p>Em có cá tính mạnh, lòng tự trọng cao, thích dẫn dắt câu chuyện và muốn mọi thứ diễn ra theo ý mình. Khi ai đó phân tích đúng những động cơ, điểm yếu hoặc phần con người em chưa muốn thừa nhận, em dễ bị kích động, phản kháng, thậm chí lập tức xóa hoặc chặn họ. Em cũng thiếu kiên nhẫn lắng nghe, muốn đạt kết quả nhanh, thích làm những điều lớn lao nhưng đôi khi không đủ kiên trì với những công việc nhỏ và quá trình tích lũy chậm rãi.</p>
+
+            <h4 class="font-bold text-base text-slate-800">5. Trí thức hóa cảm xúc, hiểu nhiều bằng lý trí nhưng chưa thực sự tích hợp vào hành vi</h4>
+            <p>Em thường dùng kiến thức tâm lý học, phân tâm học và khoa học hành vi để phân tích mọi thứ, từ động cơ của người khác đến chính bản thân mình. Em quen đứng ở vị trí người quan sát, lý giải và tìm kiếm bản chất vấn đề. Tuy nhiên, đôi khi em hiểu rất rõ một cơ chế tâm lý nhưng lại chưa thực sự cảm nhận, xử lý cảm xúc hoặc thay đổi được phản ứng của mình. Có những mô thức em đã nhận diện từ lâu nhưng vẫn tiếp tục lặp lại.</p>
+
+            <h4 class="font-bold text-base text-slate-800">6. Khao khát được yêu thương, thấu hiểu nhưng lại sợ bị nhìn thấu và phụ thuộc</h4>
+            <p>Sâu bên trong, em luôn mong muốn một tình yêu ấm áp, được chở che, chăm sóc và có một người đủ sâu sắc để hiểu, chấp nhận tất cả những mặt đối lập trong con người mình: vừa mạnh mẽ vừa dịu dàng, vừa lý trí vừa giàu cảm xúc, vừa độc lập vừa khao khát được dựa vào ai đó. Nhưng khi thực sự gặp người có khả năng nhìn thấu suy nghĩ và những góc khuất của mình, em lại dễ sợ hãi, bất an và muốn đẩy họ ra xa. Em sợ phụ thuộc cảm xúc, sợ mất quyền kiểm soát và sợ những điểm yếu của mình bị người khác nắm giữ.</p>
+
+            <h4 class="font-bold text-base text-slate-800">7. Xu hướng gắn bó lo âu (Anxious Attachment), sợ bị bỏ rơi và nhu cầu chiếm hữu trong tình cảm</h4>
+            <p>Em nhận thấy mình có những biểu hiện gắn bó lo âu khá mạnh khi bước vào một mối quan hệ tình cảm. Em thường xuyên tìm kiếm sự xác nhận, muốn có bằng chứng rằng đối phương thực sự yêu thương, quan tâm và lựa chọn mình. Chỉ cần thái độ, tần suất nhắn tin hay cách thể hiện tình cảm của họ thay đổi đột ngột, em đã dễ rơi vào trạng thái bất an, suy diễn, bi kịch hóa vấn đề và tưởng tượng ra những tình huống tiêu cực nhất. Em còn có xu hướng lý tưởng hóa hình tượng người yêu, đặt nhiều kỳ vọng vào họ, để cảm xúc của bản thân phụ thuộc quá lớn vào cách họ đối xử với mình. Khi gắn bó sâu sắc, em dễ nảy sinh mong muốn chiếm hữu, muốn nắm rõ và kiểm soát đối phương để đảm bảo mọi thứ vẫn nằm trong tầm tay. Em rất sợ những thay đổi bất ngờ, sự mập mờ và cảm giác có thể đánh mất người mình yêu. Em vừa khao khát được yêu thương tuyệt đối, vừa luôn bất an trước khả năng tình yêu ấy có thể thay đổi hoặc biến mất.</p>
+
+            <div class="pt-6 border-t border-amber-200 mt-6">
+              <p class="italic text-slate-600 text-sm">Cuối cùng, em cảm ơn anh Thiện vì đã lắng nghe và tạo cho em cơ hội nhìn lại bản thân dưới một góc nhìn khác. Em biết những điều mình chia sẻ mới chỉ là một phần trong thế giới nội tâm còn nhiều mâu thuẫn, và hành trình thấu hiểu chính mình chắc chắn không thể hoàn thành chỉ sau vài buổi trò chuyện. Em không mong trở thành một con người hoàn hảo hay loại bỏ tất cả những góc khuất, mà muốn học cách thấu hiểu, chấp nhận và dung hòa chúng với những giá trị tốt đẹp vốn có. Em vẫn muốn sống một cuộc đời nhiều hoài bão, tự do và có ý nghĩa, nhưng không còn phải liên tục chứng minh giá trị để cảm thấy mình xứng đáng được yêu thương. Hy vọng trong những buổi gặp tiếp theo, anh em mình sẽ cùng tháo gỡ từng nút thắt ấy.<br><br>Cảm ơn anh thật nhiều, và hẹn gặp anh vào thứ Bảy này nhé!</p>
+              <div class="font-serif font-bold text-[#ff9500] text-lg mt-3">Đặng Huyền Phương</div>
+            </div>
+          </div>
+
+          <!-- Next Step Navigation Card -->
+          <div class="mt-8 pt-6 border-t border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-4 no-print bg-amber-50/60 -mx-8 -mb-8 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-2xl">
+            <button onclick="switchTab('letter1')" class="inline-flex h-11 items-center justify-center rounded-full bg-white hover:bg-slate-100 px-5 text-xs font-bold text-slate-600 border border-slate-200 transition-colors flex-shrink-0 w-full sm:w-auto">
+              &larr; Thư Sau Phiên 1
+            </button>
+            <div class="text-center sm:text-right">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-[#1992b0]">Lời Hồi Đáp Từ Nhà Tham Vấn</span>
+              <div class="font-serif font-bold text-base text-slate-800">Thư Sau Phiên 2: Chạm Vào The Shadow</div>
+              <p class="text-xs text-slate-500">Phóng chiếu con gián, 3 bài tập chuyển hóa và mục tiêu phiên 3.</p>
+            </div>
+            <button onclick="switchTab('letter2')" class="relative inline-flex h-11 items-center justify-center rounded-full bg-[#1992b0] hover:bg-sunny-dark px-6 text-sm font-bold text-white transition-all shadow-md shadow-sunny-teal/20 flex-shrink-0 group w-full sm:w-auto">
+              <span>Đọc Thư Tiếp Theo (Phiên 2)</span>
+              <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: TOÀN VĂN THƯ SAU PHIÊN 2 -->
+      <!-- ========================================== -->
+      <div id="letter2" class="tab-pane space-y-6">
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm letter-card">
+          <img src="header.png" alt="SunnyCare Banner" class="w-full h-auto object-cover rounded-xl mb-6 shadow-sm border border-slate-100 no-print">
+          
+          <div class="border-b border-slate-100 pb-6 mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-2">
+                Thư Sau Phiên 2 (Mới nhất)
+              </span>
+              <h2 class="font-serif font-bold text-2xl text-slate-800">THƯ GỬI HUYỀN PHƯƠNG - SAU PHIÊN 2</h2>
+              <div class="text-xs text-slate-500 italic mt-1">Ngày viết: 31 tháng 10 năm 2026 · Người gửi: Anh Trần Thiện</div>
+            </div>
+            <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-white bg-[#1992b0] hover:bg-sunny-dark shadow-sm transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              In Bản Thư Này
+            </button>
+          </div>
+
+          <div class="text-slate-700 space-y-5 text-justify leading-relaxed text-base">
+            <div class="font-serif font-bold text-lg text-[#1992b0]">Em Huyền Phương thân mến,</div>
+
+            <p>Trước hết, anh muốn gửi lời chúc mừng chân thành đến em. Em đã có một bước tiến vô cùng dũng cảm trong buổi trò chuyện hôm nay: <strong>dám nhìn thẳng vào câu chuyện "con gián" và chạm vào phần Cái bóng (<em>The Shadow</em>) bên trong mình</strong>.</p>
+
+            <p>Đó là một khoảnh khắc không hề dễ dàng. Để một người phụ nữ thông minh, bản lĩnh, luôn nỗ lực xây dựng một hình tượng độc lập, xuất sắc và có lý tưởng lớn lao như em chịu dừng lại, thừa nhận những góc khuất, những cảm xúc hỗn loạn và sự ghê tởm tự thân – điều đó đòi hỏi một sự can đảm phi thường. Trong giây phút em chia sẻ về con gián với tất cả sự xúc động và thành thật, em đã không còn dùng lý trí để trốn chạy nữa. Em đã bắt đầu bước chân vào hành trình dũng cảm nhất của đời người: <strong>hành trình thấu hiểu và ôm lấy trọn vẹn con người mình</strong>.</p>
+
+            <p>Anh cảm ơn em vì lá thư dài 10 trang em đã gửi cho anh trước buổi gặp. Từng con chữ trong lá thư ấy đã giúp anh cảm nhận được trọn vẹn một tâm hồn sâu sắc, giàu lòng tự trọng, một sức sống mãnh liệt như đóa hoa dại vươn lên giữa nghèo khó và giông bão, nhưng đồng thời cũng đang gánh chịu quá nhiều vết thương chưa được băng bó.</p>
+
+            <h3 class="font-serif font-bold text-xl text-[#1992b0] pt-4 border-b border-slate-100 pb-2">BỨC TRANH TÂM LÝ: KHI CÂU CHUYỆN CON GIÁN ĐƯỢC GIẢI MÃ</h3>
+            <p>Trong buổi gặp, em đã dùng những từ ngữ mang sắc thái cảm xúc rất mạnh khi nói về con gián: <em>"gớm ghiếc, kinh tởm, thấp hèn, chui rúc, dơ bẩn, hôi hám..."</em>.</p>
+            <p>Anh muốn em hiểu rằng: <strong>Em không hề ghê sợ con gián ngoài đời thực, mà em đang ghê sợ những phần quá khứ tổn thương mà em đã vô thức phóng chiếu lên nó</strong>. Con gián chính là tấm gương phản chiếu những góc khuất mà bấy lâu nay em chối bỏ và sợ hãi ở chính mình:</p>
+
+            <div class="bg-sunny-light/70 border-l-4 border-[#1992b0] p-5 rounded-r-xl space-y-4 text-sm sm:text-base">
+              <div>
+                <strong class="text-[#1992b0]">1. "Kinh tởm / Gớm ghiếc":</strong> Đó là lúc Siêu ngã (<em>Superego</em>) của em tự phán xét những ham muốn thể xác, sở thích BDSM, hay sự vỡ vụn sau mối quan hệ bị lạm dụng tình cảm/tình dục năm 19 tuổi.<br>
+                <em class="text-slate-600">Sự thật dịu dàng:</em> Nhu cầu gần gũi thể xác là phản ứng sinh học tự nhiên. Mong muốn được phục tùng trong BDSM thực chất là tiếng kêu cứu của một tâm trí đã quá mệt mỏi vì phải gồng mình kiểm soát mọi thứ ngoài đời thực – em chỉ đang khao khát được "tắt nguồn", được che chở và buông bỏ sự căng thẳng trong một không gian an toàn. Còn vết thương năm 19 tuổi là sự thao túng của người khác; em là một cô gái mới lớn ngây thơ bị lợi dụng, em hoàn toàn không có tội và không có gì là "kinh tởm".
+              </div>
+
+              <div>
+                <strong class="text-[#1992b0]">2. "Thấp hèn":</strong> Đó là vết thương từ tuổi thơ nghèo khó, mặc quần áo rách cũ, gia đình nợ nần bị người đời xỉa xói, coi thường. Nỗi sợ mình "thấp hèn" đã biến thành chiếc bẫy buộc em phải làm thủ khoa, phải nói 3 thứ tiếng, phải liên tục bận rộn và thành công để chứng minh giá trị.<br>
+                <em class="text-slate-600">Sự thật dịu dàng:</em> Nghèo khó chỉ là hoàn cảnh xuất phát điểm, không phải là phẩm chất của em. Em như loài gián kiên cường sống sót qua mọi thảm họa địa chất – một đóa hoa dại kiên cường vượt qua nghịch cảnh cùng cực để khẳng định bản thân. Em không hề thấp hèn, em mang một sức sống phi thường. Giá trị của em là bẩm sinh, em sinh ra đã xứng đáng được yêu thương mà không cần phải liên tục chứng minh điều gì cả.
+              </div>
+
+              <div>
+                <strong class="text-[#1992b0]">3. "Chui rúc":</strong> Đó là ký ức cả nhà phải trốn chạy giang hồ đòi nợ, nỗi sợ hãi khi đơn độc gánh chịu những tin nhắn bôi nhọ trước kỳ thi, và sự nhẫn nhục giấu kín cảm xúc thật sau lớp vỏ bọc hoàn hảo.<br>
+                <em class="text-slate-600">Sự thật dịu dàng:</em> Khi giông bão ập xuống một đứa trẻ chưa đủ lực, biết "chui rúc" và nhẫn nại ẩn mình để bảo toàn tính mạng và nuôi dưỡng việc học chính là <strong>trí tuệ sinh tồn và bản lĩnh cao nhất</strong>. Đứa trẻ năm ấy đã làm rất tốt để cứu sống và đưa em đến vị thế hôm nay. Nay giông bão đã tan rồi, em không còn bất lực nữa. Em hoàn toàn an toàn để bước ra ánh sáng và sống tự do với chính mình.
+              </div>
+
+              <div>
+                <strong class="text-[#1992b0]">4. "Dơ bẩn / Hôi hám":</strong> Đó là sự Xấu hổ độc hại (<em>Toxic Shame</em>) khi em bị người khác vu khống danh dự (bị đồn làm gái) và cảm giác bị hoen ố sau những lần bị xâm phạm ranh giới thân thể.<br>
+                <em class="text-slate-600">Sự thật dịu dàng:</em> Bùn đất nghịch cảnh ném vào tà áo không thể làm hoen ố đóa sen tâm hồn em. Sự nhơ nhuốc thuộc về kẻ vu khống và kẻ lợi dụng, không thuộc về em. Tâm hồn và phẩm giá của em luôn tinh khôi, kiêu hãnh và đáng được nâng niu tuyệt đối.
+              </div>
+            </div>
+
+            <h3 class="font-serif font-bold text-xl text-[#1992b0] pt-4 border-b border-slate-100 pb-2">HƯỚNG DẪN BÀI TẬP THỰC HÀNH CỤ THỂ DÀNH CHO HUYỀN PHƯƠNG</h3>
+            <p>Để những nhận thức sâu sắc hôm nay không chỉ dừng lại ở lý thuyết mà thực sự đi vào đời sống, anh thiết kế cho em <strong>3 bài tập cụ thể</strong> dưới đây. Em hãy xem đây là những món quà chăm sóc tâm hồn mỗi ngày:</p>
+
+            <p><strong>🌟 BÀI TẬP 1: GHI NHẬN BẢN THÂN (SELF-ACKNOWLEDGMENT)</strong><br>
+            <em>(Dành 2 khoảnh khắc mỗi ngày: 1 lần sau bữa trưa và 1 lần trước khi đi ngủ, từ 3 - 5 phút/lần)</em><br>
+            • <em>Mục tiêu:</em> Tập cho tâm trí thói quen tự công nhận từ bên trong, tháo gỡ sự phụ thuộc vào lời khen hay sự ngưỡng mộ từ bên ngoài.<br>
+            • <em>Cách thực hiện:</em> Ngồi tĩnh lặng, thở sâu 3 nhịp. Viết vào sổ 3 điều em đã làm được (từ việc nhỏ trong sinh hoạt đến công việc). Sau đó mỉm cười, tự vỗ nhẹ vào vai và thầm nói: <em>"Cảm ơn Phương, hôm nay em đã chăm sóc bản thân rất tốt."</em></p>
+
+            <p><strong>🌟 BÀI TẬP 2: LẮNG NGHE CHÁNH NIỆM TRONG GIAO TIẾP (MINDFUL LISTENING)</strong><br>
+            <em>(Thực hành mỗi khi trò chuyện, gặp gỡ bạn bè hoặc đồng nghiệp)</em><br>
+            • <em>Mục tiêu:</em> Hạ khiên chắn trí thức hóa (<em>Intellectualization</em>), buông bỏ áp lực phải tỏ ra hiểu biết hay làm chủ cuộc trò chuyện, tạo dựng sự kết nối cảm xúc chân thật.<br>
+            • <em>Cách thực hiện:</em> Nhận diện khi có ý nghĩ "mình phải phân tích / đưa giải pháp / chứng minh mình biết" &rarr; Thở chậm, im lặng và hướng toàn bộ sự chú ý vào ánh mắt, giọng điệu của đối phương &rarr; Phản hồi bằng sự thấu cảm: <em>"Nghe bạn kể mình thấy chuyện này không dễ dàng chút nào"</em>.</p>
+
+            <p><strong>🌟 BÀI TẬP 3: NHẬT KÝ THE SHADOW – ĐỐI THOẠI VÀ CHỮA LÀNH CÙNG "CON GIÁN BÊN TRONG"</strong><br>
+            <em>(Thực hành 2 - 3 lần trong tuần khi ở một mình trong không gian yên tĩnh)</em><br>
+            Chọn 1 trong 4 từ khóa (Kinh tởm, Thấp hèn, Chui rúc, Dơ bẩn) để tự vấn và đọc to 3 lần lời khẳng định giải thoát:</p>
+            <ul class="list-disc pl-6 space-y-1.5 text-sm">
+              <li><em>"Cơ thể và mọi rung cảm bản năng của em hoàn toàn trong sạch. Em cho phép mình trân trọng mọi cung bậc cảm xúc mà không còn tự sỉ vả hay hổ thẹn."</em></li>
+              <li><em>"Em sinh ra đã có giá trị trọn vẹn. Em tôn vinh sức sống bền bỉ của đóa hoa dại và giải phóng bản thân khỏi áp lực phải liên tục chứng minh."</em></li>
+              <li><em>"Em tri ân sự nhẫn nại đã cứu sống em trong giông bão. Giờ đây em hoàn toàn an toàn và tự do bước đi hiên ngang dưới ánh mặt trời."</em></li>
+              <li><em>"Sự nhơ nhuốc thuộc về kẻ gây hại, sự trong sạch và tôn nghiêm thuộc về em. Tâm hồn và phẩm giá của em luôn tinh khôi và đáng được yêu thương tuyệt đối."</em></li>
+            </ul>
+
+            <h3 class="font-serif font-bold text-xl text-[#1992b0] pt-4 border-b border-slate-100 pb-2">HƯỚNG ĐI TIẾP THEO: MỤC TIÊU PHIÊN 3 CỦA HAI ANH EM MÌNH</h3>
+            <p>Để em có thể hình dung rõ ràng hành trình sắp tới và an tâm chuẩn bị tâm thế, anh muốn chia sẻ trước với em những mục tiêu trọng tâm mà hai anh em mình sẽ cùng đi qua trong <strong>Phiên 3</strong>:</p>
+
+            <div class="bg-amber-50/60 border-l-4 border-[#ff9500] p-5 rounded-r-xl space-y-3 text-sm sm:text-base">
+              <p><strong>1. Chuyển từ "Phân tích bằng lý trí" sang "Chạm vào và Chữa lành cảm xúc thực tế":</strong> Chúng ta sẽ không tiếp tục mổ xẻ các lý thuyết tâm lý nữa. Phiên 3 là không gian để em được an toàn bộc lộ những nỗi đau, sự sợ hãi và những giọt nước mắt mà bấy lâu nay em đã kìm nén sau vỏ bọc kiên cường.</p>
+              <p><strong>2. Ôm ấp "Đứa trẻ Chui rúc bên trong" (Kỹ thuật Ghế trống - Empty Chair):</strong> Anh sẽ đồng hành để em – một Huyền Phương 21 tuổi đầy bản lĩnh, trí tuệ và thành đạt – được ngồi đối diện trò chuyện trực tiếp với "Huyền Phương thời thơ ấu" (cô bé mặc áo rách, sợ hãi trốn nợ giang hồ). Em sẽ tự tay gửi lời tri ân, ôm lấy em ấy vào lòng và nói rằng: <em>"Chị đã lớn, chị đủ mạnh mẽ để bảo vệ em; em không cần phải chui rúc nữa, em hoàn toàn an toàn để bước ra ánh sáng."</em></p>
+              <p><strong>3. Gột rửa hoàn toàn sự Xấu hổ độc hại (Toxic Shame) và Sang chấn năm 19 tuổi:</strong> Bóc tách sâu hơn về mối quan hệ bị thao túng tình cảm/tình dục năm 19 tuổi để em nhìn thấu cơ chế chấn thương gắn bó (<em>Trauma Bonding</em>), trả lại toàn bộ sự nhơ nhuốc và tội lỗi cho kẻ gây hại, khôi phục lại sự tự tôn và tinh khôi nguyên bản của em.</p>
+              <p><strong>4. Hòa giải mâu thuẫn giữa Kiểm soát ngoài đời và Buông bỏ trong BDSM:</strong> Giúp em thiết lập một cảm giác An toàn nội tại (<em>Inner Safety</em>) vững chắc, để em học được cách "tắt nguồn" buông lơi sự kiểm soát một cách an lành trong đời sống hàng ngày mà không cần phải đánh đổi bằng những mối quan hệ mạo hiểm hay độc hại.</p>
+              <p class="pt-2 font-bold text-[#ff9500] italic">💡 Tâm thế chuẩn bị cho Phiên 3: Em không cần phải chuẩn bị bất kỳ tài liệu hay kiến thức lý thuyết nào cả. Em chỉ cần mang theo một trái tim chân thành, sự cởi mở với chính mình và những trải nghiệm thực tế từ 3 bài tập về nhà trong tuần qua.</p>
+            </div>
+
+            <p class="pt-4">Huyền Phương à, không ai có thể bước vào sự khai sáng trọn vẹn nếu từ chối nhìn vào bóng tối của chính mình. Những gì em đã trải qua – dù là nghèo khó, đe dọa nợ nần, sự bôi nhọ danh dự hay những vấp ngã tuổi 19 – không có điều gì có thể làm giảm đi phẩm giá cao quý và vẻ đẹp tâm hồn của em. Chúng chỉ là những thử thách khắc nghiệt tôi luyện nên một đóa hoa dại ngát hương và kiên cường như em hôm nay.</p>
+            <p>Em không cần phải hoàn hảo ngay ngày mai. Hãy cứ đi từng bước nhỏ, dịu dàng với chính mình, và nhớ rằng: <strong>Em không hề đơn độc trên hành trình trở về với sự tự do đích thực của tâm hồn</strong>.</p>
+
+            <div class="pt-6 border-t border-slate-200 mt-6">
+              <p class="italic text-slate-600 text-sm">• Lịch hẹn phiên tiếp theo (Phiên 3): Sẽ được thống nhất theo lịch thuận tiện nhất cho em.<br>• Chúc em những ngày sắp tới thật bình an, nhẹ nhõm và tràn đầy tình yêu thương tự thân.</p>
+              <div class="font-serif font-bold text-[#1992b0] text-lg mt-3">Anh Trần Thiện</div>
+              <div class="text-xs text-slate-500 italic">Người đồng hành tinh thần của Huyền Phương</div>
+            </div>
+          </div>
+
+          <!-- Next Step Navigation Card -->
+          <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 no-print bg-emerald-50/60 -mx-8 -mb-8 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-2xl">
+            <button onclick="switchTab('letter-client')" class="inline-flex h-11 items-center justify-center rounded-full bg-white hover:bg-slate-100 px-5 text-xs font-bold text-slate-600 border border-slate-200 transition-colors flex-shrink-0 w-full sm:w-auto">
+              &larr; Tâm Thư 10 Trang
+            </button>
+            <div class="text-center sm:text-right">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Thực Hành Chuyển Hóa</span>
+              <div class="font-serif font-bold text-base text-slate-800">3 Bài Tập Chữa Lành & Bộ Thẻ Affirmations</div>
+              <p class="text-xs text-slate-500">Tích hợp nhận thức vào cơ thể, ghi nhận bản thân và hóa giải The Shadow.</p>
+            </div>
+            <button onclick="switchTab('practice')" class="relative inline-flex h-11 items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700 px-6 text-sm font-bold text-white transition-all shadow-md shadow-emerald-600/20 flex-shrink-0 group w-full sm:w-auto">
+              <span>Đến Góc Thực Hành</span>
+              <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 5: GÓC BÀI TẬP THỰC HÀNH TỰ CHỮA LÀNH -->
+      <!-- ======================================================== -->
+      <div id="practice" class="tab-pane space-y-6">
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm">
+          
+          <div class="border-b border-slate-100 pb-5 mb-8 text-center">
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-2">
+              Chuyển Hóa Nhận Thức Thành Hành Động
+            </span>
+            <h2 class="font-serif font-bold text-2xl text-slate-800">GÓC BÀI TẬP THỰC HÀNH & TỰ CHỮA LÀNH</h2>
+            <p class="text-slate-500 text-sm max-w-xl mx-auto mt-1">Dành riêng cho Đặng Huyền Phương rèn luyện hàng ngày</p>
+          </div>
+
+          <!-- Checklist Bài 1 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 mb-8">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0]">
+                Bài Tập 1 Hàng Ngày
+              </span>
+              <span id="save-status" class="text-xs text-emerald-600 font-semibold italic">✓ Tự động lưu trên thiết bị</span>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-slate-800 mb-1">Ghi Nhận Bản Thân (Self-Acknowledgment)</h3>
+            <p class="text-slate-600 text-sm mb-4">Dành 2 khoảnh khắc tĩnh lặng mỗi ngày (trưa và tối). Nhấp vào để đánh dấu những điều em đã làm được:</p>
+
+            <div class="bg-white rounded-xl border border-slate-200 p-4 space-y-3">
+              <label class="flex items-center gap-3 cursor-pointer text-sm">
+                <input type="checkbox" id="chk1" onchange="saveChecklist()" class="w-5 h-5 rounded text-[#1992b0] focus:ring-[#1992b0]">
+                <span>Trưa nay tôi đã ăn một bữa cơm ngon miệng và uống đủ nước.</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer text-sm">
+                <input type="checkbox" id="chk2" onchange="saveChecklist()" class="w-5 h-5 rounded text-[#1992b0] focus:ring-[#1992b0]">
+                <span>Tôi đã hoàn thành xong một việc cần làm mà không trì hoãn.</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer text-sm">
+                <input type="checkbox" id="chk3" onchange="saveChecklist()" class="w-5 h-5 rounded text-[#1992b0] focus:ring-[#1992b0]">
+                <span>Tôi đã dừng lại nhận diện cảm xúc và nhu cầu thật của mình.</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer text-sm">
+                <input type="checkbox" id="chk4" onchange="saveChecklist()" class="w-5 h-5 rounded text-[#1992b0] focus:ring-[#1992b0]">
+                <span>Tôi đã giữ một ranh giới hoặc nói “không” khi cần thiết.</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer text-sm">
+                <input type="checkbox" id="chk5" onchange="saveChecklist()" class="w-5 h-5 rounded text-[#1992b0] focus:ring-[#1992b0]">
+                <span>Tôi đã cho phép bản thân nghỉ ngơi 15 phút mà không cảm thấy tội lỗi.</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer text-sm">
+                <input type="checkbox" id="chk6" onchange="saveChecklist()" class="w-5 h-5 rounded text-[#1992b0] focus:ring-[#1992b0]">
+                <span>Hành động cơ thể: Mỉm cười, tự vỗ nhẹ vào vai và cảm ơn chính mình.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Bài 2: Lắng nghe chánh niệm -->
+          <div class="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-[#ff9500] mb-3 inline-block">
+              Bài Tập 2 Giao Tiếp
+            </span>
+            <h3 class="font-serif font-bold text-lg text-slate-800 mb-1">Lắng Nghe Chánh Niệm Trong Giao Tiếp (Mindful Listening)</h3>
+            <p class="text-slate-600 text-sm mb-4">Khi trò chuyện với bạn bè: buông bỏ thói quen đưa ra giải pháp hoặc chứng minh sự hiểu biết.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-sm">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div class="font-bold text-[#1992b0] mb-1">Bước 1: Nhận diện</div>
+                <p class="text-slate-600 text-xs leading-relaxed">Khi ý nghĩ "mình phải phân tích/chứng minh" trỗi dậy &rarr; Mỉm cười nhận diện.</p>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div class="font-bold text-[#ff9500] mb-1">Bước 2: Khoảng dừng</div>
+                <p class="text-slate-600 text-xs leading-relaxed">Thở chậm, im lặng và hướng trọn vẹn sự chú ý vào ánh mắt, cảm xúc đối phương.</p>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div class="font-bold text-emerald-600 mb-1">Bước 3: Thấu cảm</div>
+                <p class="text-slate-600 text-xs leading-relaxed">Nói lời thấu cảm: "Nghe bạn kể mình thấy chuyện này không dễ dàng chút nào".</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bài 3: 4 Thẻ Affirmation The Shadow -->
+          <div>
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-rose-100 text-rose-600 mb-3 inline-block">
+              Bài Tập 3 Chuyên Sâu
+            </span>
+            <h3 class="font-serif font-bold text-lg text-slate-800 mb-1">Nhật Ký The Shadow – Bảng Tự Vấn & Khẳng Định Giải Thoát</h3>
+            <p class="text-slate-600 text-sm mb-4">4 lời khẳng định chữa lành tương ứng với từng từ khóa con gián:</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Card 1 -->
+              <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="font-bold text-rose-600 text-sm mb-1">1. Kinh tởm / Gớm ghiếc</div>
+                  <p class="text-xs text-slate-600 mb-3">Tự phán xét ham muốn tình dục, BDSM hay tổn thương năm 19 tuổi?</p>
+                </div>
+                <div class="bg-emerald-50 border-l-3 border-emerald-500 p-3 rounded-r-lg text-xs italic text-emerald-900">
+                  "Cơ thể và mọi rung cảm bản năng của em hoàn toàn trong sạch. Em trân trọng mọi cảm xúc mà không còn tự sỉ vả."
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="font-bold text-rose-600 text-sm mb-1">2. Thấp hèn</div>
+                  <p class="text-xs text-slate-600 mb-3">Sợ mình thấp hèn vì nghèo khó tuổi thơ nên phải gồng mình làm thủ khoa?</p>
+                </div>
+                <div class="bg-emerald-50 border-l-3 border-emerald-500 p-3 rounded-r-lg text-xs italic text-emerald-900">
+                  "Em sinh ra đã có giá trị trọn vẹn. Em tôn vinh đóa hoa dại và giải phóng bản thân khỏi áp lực phải chứng minh."
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="font-bold text-rose-600 text-sm mb-1">3. Chui rúc</div>
+                  <p class="text-xs text-slate-600 mb-3">Ký ức trốn nợ năm xưa đã giúp em bảo toàn tính mạng và ước mơ ra sao?</p>
+                </div>
+                <div class="bg-emerald-50 border-l-3 border-emerald-500 p-3 rounded-r-lg text-xs italic text-emerald-900">
+                  "Em tri ân sự nhẫn nại đã cứu sống em qua giông bão. Giờ đây em hoàn toàn an toàn và tự do bước đi dưới ánh sáng."
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="font-bold text-rose-600 text-sm mb-1">4. Dơ bẩn / Hôi hám</div>
+                  <p class="text-xs text-slate-600 mb-3">Vết thương bị vu khống danh dự hay bị lạm dụng có phải lỗi của em?</p>
+                </div>
+                <div class="bg-emerald-50 border-l-3 border-emerald-500 p-3 rounded-r-lg text-xs italic text-emerald-900">
+                  "Sự nhơ nhuốc thuộc về kẻ gây hại, sự trong sạch thuộc về em. Tâm hồn em luôn tinh khôi và đáng được yêu thương."
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Step Navigation Card -->
+          <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 no-print bg-purple-50/60 -mx-8 -mb-8 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-2xl">
+            <button onclick="switchTab('letter2')" class="inline-flex h-11 items-center justify-center rounded-full bg-white hover:bg-slate-100 px-5 text-xs font-bold text-slate-600 border border-slate-200 transition-colors flex-shrink-0 w-full sm:w-auto">
+              &larr; Thư Sau Phiên 2
+            </button>
+            <div class="text-center sm:text-right">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600">Lộ Trình Tương Lai</span>
+              <div class="font-serif font-bold text-base text-slate-800">4 Mục Tiêu Trọng Tâm Cho Phiên 3</div>
+              <p class="text-xs text-slate-500">Chuyển từ lý trí sang cảm xúc, kỹ thuật Ghế trống ôm ấp đứa trẻ bên trong.</p>
+            </div>
+            <button onclick="switchTab('session3')" class="relative inline-flex h-11 items-center justify-center rounded-full bg-purple-700 hover:bg-purple-800 px-6 text-sm font-bold text-white transition-all shadow-md shadow-purple-700/20 flex-shrink-0 group w-full sm:w-auto">
+              <span>Xem Mục Tiêu Phiên 3</span>
+              <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 6: KẾ HOẠCH & MỤC TIÊU PHIÊN 3 -->
+      <!-- ======================================================== -->
+      <div id="session3" class="tab-pane space-y-6">
+        <div class="bg-white rounded-2xl border border-purple-200 p-8 sm:p-10 shadow-sm letter-card">
+          
+          <div class="border-b border-purple-100 pb-5 mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-700 mb-2">
+                Kế Hoạch Lâm Sàng Đột Phá
+              </span>
+              <h2 class="font-serif font-bold text-2xl text-slate-800">KẾ HOẠCH & MỤC TIÊU THAM VẤN CHUYÊN SÂU - PHIÊN 3</h2>
+              <div class="text-xs text-slate-500 italic mt-1">Chủ đề: "Từ Nhận Thức Đến Chữa Lành: Hòa Giải Cái Bóng & Giải Tỏa Toxic Shame"</div>
+            </div>
+            <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-white bg-purple-600 hover:bg-purple-700 shadow-sm transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              In Kế Hoạch Này
+            </button>
+          </div>
+
+          <div class="text-slate-700 space-y-5 text-justify leading-relaxed text-base">
+            <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded-r-lg text-sm sm:text-base">
+              <strong>MỤC TIÊU TỔNG QUÁT:</strong> Giúp thân chủ chuyển hóa từ Trí thức hóa lý trí sang kết nối và chữa lành cảm xúc thực tế; giải tỏa tận gốc cảm giác Xấu hổ độc hại (Toxic Shame) từ quá khứ nghèo khó và mối quan hệ tuổi 19; thực hành kỹ thuật Ghế trống để ôm ấp "phần con gián chui rúc bên trong", tiến tới sự tự chấp nhận vô điều kiện.
+            </div>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">1. Nghiệm thu & Lượng giá sự chuyển hóa từ bài tập</h3>
+            <p>Lắng nghe cảm xúc khi thực hành 2 khoảnh khắc ghi nhận bản thân; đánh giá mức độ buông bỏ khiên chắn chứng minh năng lực khi trò chuyện cùng bạn bè; khai mở những khoảnh khắc giải thoát khi đọc affirmations The Shadow.</p>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">2. Bóc tách Sang chấn tuổi 19 & Chấn thương gắn bó (Trauma Bonding)</h3>
+            <p>Giải mã vì sao lời khen của người đàn ông ái kỷ lại mở tung "chiếc rương kho báu" và khiến em bị lệ thuộc; thực hiện nghi thức tách rời lỗi lầm, trả lại toàn bộ sự xấu hổ cho kẻ gây hại và thu hồi tôn nghiêm về lại cho chính mình.</p>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">3. Hòa giải mâu thuẫn Kiểm soát (Control) vs. Phục tùng (Surrender / BDSM)</h3>
+            <p>Định danh bản chất: Nhu cầu BDSM/phục tùng là tiếng kêu cứu muốn được "tắt nguồn" buông gánh nặng kiểm soát sau chuỗi ngày gồng mình. Hướng dẫn thân chủ tạo dựng sự an toàn nội tại (Inner Safety) để buông lỏng kiểm soát lành mạnh trong đời sống thường nhật.</p>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">4. Kỹ thuật Ghế trống (Empty Chair): Ôm ấp "Đứa trẻ chui rúc bên trong"</h3>
+            <p>Cho Huyền Phương 21 tuổi (thành đạt, bản lĩnh) ngồi đối thoại với Huyền Phương thời thơ ấu (áo rách, trốn nợ, sợ hãi). Gửi lời tri ân sự nhẫn nại sinh tồn năm xưa, cam kết bảo vệ và tuyên bố an toàn: <em>"Chị đã lớn, chị đủ mạnh mẽ để bảo vệ em. Từ nay em an toàn để bước ra ánh sáng."</em></p>
+
+            <div class="bg-sunny-light border-l-4 border-[#1992b0] p-4 rounded-r-lg text-sm text-slate-800 mt-6">
+              <strong>💡 Tâm thế chuẩn bị:</strong> Huyền Phương không cần chuẩn bị bất kỳ lý thuyết nào cả, chỉ cần mang theo một trái tim chân thật và những trải nghiệm từ 3 bài tập về nhà.
+            </div>
+          </div>
+
+          <!-- Next Step Navigation Card -->
+          <div class="mt-8 pt-6 border-t border-purple-100 flex flex-col sm:flex-row items-center justify-between gap-4 no-print bg-sunny-light/60 -mx-8 -mb-8 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-2xl">
+            <button onclick="switchTab('practice')" class="inline-flex h-11 items-center justify-center rounded-full bg-white hover:bg-slate-100 px-5 text-xs font-bold text-slate-600 border border-slate-200 transition-colors flex-shrink-0 w-full sm:w-auto">
+              &larr; Góc Thực Hành
+            </button>
+            <div class="text-center sm:text-right">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-[#1992b0]">Hoàn Thành Hồ Sơ</span>
+              <div class="font-serif font-bold text-base text-slate-800">Quay về Trang Tổng Quan Hành Trình</div>
+              <p class="text-xs text-slate-500">Xem lại tổng thể các mốc tiến trình và tài liệu đã lưu trữ.</p>
+            </div>
+            <button onclick="switchTab('home')" class="relative inline-flex h-11 items-center justify-center rounded-full bg-[#1992b0] hover:bg-sunny-dark px-6 text-sm font-bold text-white transition-all shadow-md shadow-sunny-teal/20 flex-shrink-0 group w-full sm:w-auto">
+              <span>Trang Tổng Quan &rarr;</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      </main>
+
+      <!-- ======================================================== -->
+      <!-- FOOTER: CĂN GIỮA HOÀN TOÀN (CENTERED FOOTER 100%) -->
+      <!-- ======================================================== -->
+      <footer class="no-print w-full bg-white border-t border-slate-200 py-8 px-4 mt-auto">
+        <div class="max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-2">
+          
+          <!-- Brand Logo / Badge in footer -->
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#1992b0] to-[#ff9500] flex items-center justify-center text-white text-xs font-bold shadow-sm">
+            SC
+          </div>
+
+          <p class="text-sm font-semibold text-slate-700">
+            Hành trình đồng hành tâm lý · Thân chủ Đặng Huyền Phương & Nhà tham vấn Trần Thiện
+          </p>
+          
+          <p class="text-xs text-slate-400">
+            Bảo mật chuyên môn · Lưu trữ tài liệu tham vấn CRM SunnyCare Group
+          </p>
+
+          <div class="flex items-center justify-center gap-4 text-xs text-[#1992b0] pt-2">
+            <a href="thu/" target="_blank" class="hover:underline">Thư mục Thư (thu/)</a>
+            <span>•</span>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:underline">Lên đầu trang ↑</button>
+          </div>
+
+        </div>
+      </footer>
+
+    </div><!-- End #content-area -->
+  </div><!-- End flex-1 container -->
+
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT: TAB SWITCHER & SIDEBAR COLLAPSE & CHECKLIST -->
+  <!-- ======================================================== -->
+  <script>
+    // Tree View Folder Toggle
+    let treeOpen = true;
+    function toggleLetterTree() {
+      const branches = document.getElementById('tree-branches');
+      const chevron = document.getElementById('tree-chevron');
+      treeOpen = !treeOpen;
+      if (treeOpen) {
+        if (branches) branches.classList.remove('hidden');
+        if (chevron) chevron.classList.add('rotate-90');
+      } else {
+        if (branches) branches.classList.add('hidden');
+        if (chevron) chevron.classList.remove('rotate-90');
+      }
+    }
+
+    function openLetterTree() {
+      const branches = document.getElementById('tree-branches');
+      const chevron = document.getElementById('tree-chevron');
+      treeOpen = true;
+      if (branches) branches.classList.remove('hidden');
+      if (chevron) chevron.classList.add('rotate-90');
+    }
+
+    // Tab Switcher with Direct Content Navigation
+    function switchTab(tabId) {
+      // 1. Hide all panes
+      document.querySelectorAll('.tab-pane').forEach(el => {
+        el.classList.remove('active');
+        el.style.display = 'none';
+      });
+      
+      // 2. Show only target pane
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) {
+        targetPane.classList.add('active');
+        targetPane.style.display = 'block';
+      }
+
+      // 3. Update Navbar pills active status
+      document.querySelectorAll('.nav-pill').forEach(btn => {
+        btn.classList.remove('text-[#1992b0]', 'bg-sunny-light', 'font-bold', 'text-[#ff9500]', 'bg-amber-50');
+        btn.classList.add('text-slate-600');
+      });
+      const activeNavPill = document.querySelector(`.nav-pill[data-target="${tabId}"]`);
+      if (activeNavPill) {
+        activeNavPill.classList.remove('text-slate-600');
+        if (tabId === 'letter-client') {
+          activeNavPill.classList.add('text-[#ff9500]', 'bg-amber-50', 'font-bold');
+        } else if (tabId === 'session3') {
+          activeNavPill.classList.add('text-purple-600', 'bg-purple-50', 'font-bold');
+        } else {
+          activeNavPill.classList.add('text-[#1992b0]', 'bg-sunny-light', 'font-bold');
+        }
+      }
+
+      // 4. Update Sidebar buttons active status
+      document.querySelectorAll('.sidebar-btn').forEach(btn => {
+        btn.classList.remove('text-[#1992b0]', 'bg-sunny-light', 'text-[#ff9500]', 'bg-amber-50', 'text-purple-600', 'bg-purple-50', 'text-emerald-600', 'bg-emerald-50', 'font-bold');
+        btn.classList.add('text-slate-600');
+      });
+      const activeSidebarBtn = document.querySelector(`.sidebar-btn[data-target="${tabId}"]`);
+      if (activeSidebarBtn) {
+        activeSidebarBtn.classList.remove('text-slate-600');
+        if (tabId === 'letter-client') {
+          activeSidebarBtn.classList.add('text-[#ff9500]', 'bg-amber-50', 'font-bold');
+        } else if (tabId === 'session3') {
+          activeSidebarBtn.classList.add('text-purple-600', 'bg-purple-50', 'font-bold');
+        } else if (tabId === 'practice') {
+          activeSidebarBtn.classList.add('text-emerald-600', 'bg-emerald-50', 'font-bold');
+        } else {
+          activeSidebarBtn.classList.add('text-[#1992b0]', 'bg-sunny-light', 'font-bold');
+        }
+
+        // If target is a letter in the tree, ensure tree is expanded
+        if (['letter1', 'letter-client', 'letter2'].includes(tabId)) {
+          openLetterTree();
+        }
+      }
+
+      // 5. Scroll directly to top of content
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Sidebar Toggle (Collapse / Expand like Aceternity Sidebar)
+    let sidebarExpanded = true;
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const contentArea = document.getElementById('content-area');
+      const sidebarIcon = document.getElementById('sidebar-icon');
+      const sidebarTexts = document.querySelectorAll('.sidebar-text');
+      const branches = document.getElementById('tree-branches');
+
+      sidebarExpanded = !sidebarExpanded;
+
+      if (!sidebarExpanded) {
+        // Collapsed mode (w-16)
+        sidebar.classList.remove('w-64');
+        sidebar.classList.add('w-16');
+        contentArea.classList.remove('ml-64');
+        contentArea.classList.add('ml-16');
+        sidebarIcon.classList.add('rotate-180');
+        sidebarTexts.forEach(el => el.classList.add('hidden'));
+        if (branches) branches.classList.add('hidden');
+      } else {
+        // Expanded mode (w-64)
+        sidebar.classList.remove('w-16');
+        sidebar.classList.add('w-64');
+        contentArea.classList.remove('ml-16');
+        contentArea.classList.add('ml-64');
+        sidebarIcon.classList.remove('rotate-180');
+        sidebarTexts.forEach(el => el.classList.remove('hidden'));
+        if (branches && treeOpen) branches.classList.remove('hidden');
+      }
+    }
+
+    // Auto-save checklist to localStorage
+    function saveChecklist() {
+      const state = {
+        chk1: document.getElementById('chk1').checked,
+        chk2: document.getElementById('chk2').checked,
+        chk3: document.getElementById('chk3').checked,
+        chk4: document.getElementById('chk4').checked,
+        chk5: document.getElementById('chk5').checked,
+        chk6: document.getElementById('chk6').checked,
+      };
+      localStorage.setItem('hp_archive_checklist', JSON.stringify(state));
+      const status = document.getElementById('save-status');
+      if (status) {
+        status.textContent = '✓ Đã lưu lúc ' + new Date().toLocaleTimeString('vi-VN');
+      }
+    }
+
+    // Load checklist on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('hp_archive_checklist');
+      if (saved) {
+        try {
+          const state = JSON.parse(saved);
+          ['chk1', 'chk2', 'chk3', 'chk4', 'chk5', 'chk6'].forEach(id => {
+            if (state[id]) document.getElementById(id).checked = true;
+          });
+        } catch (e) {}
+      }
+
+      // Responsive check on small mobile
+      if (window.innerWidth < 768) {
+        toggleSidebar();
+      }
+    });
+  </script>
+
+</body>
+</html>
