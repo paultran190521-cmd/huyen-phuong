@@ -123,6 +123,9 @@
         <button onclick="switchTab('letter2')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100" data-target="letter2">
           Phiên 2
         </button>
+        <button onclick="switchTab('letter3')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100 font-bold" data-target="letter3">
+          Phiên 3
+        </button>
         <button onclick="switchTab('practice')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100 hidden md:inline-block" data-target="practice">
           Thực Hành
         </button>
@@ -185,7 +188,7 @@
                 <span class="sidebar-text truncate font-bold text-slate-800">Thư Mục Thư Tín</span>
               </div>
               <div class="flex items-center gap-1.5 sidebar-text">
-                <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-sunny-light text-[#1992b0] font-bold">3 thư</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-sunny-light text-[#1992b0] font-bold">4 thư</span>
                 <svg id="tree-chevron" class="w-4 h-4 text-slate-400 transition-transform duration-200 group-hover:text-slate-600 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -219,6 +222,15 @@
                 <button onclick="switchTab('letter2')" class="sidebar-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-[#1992b0] hover:bg-slate-50 transition-colors" data-target="letter2">
                   <svg class="w-4 h-4 flex-shrink-0 text-[#1992b0]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                   <span class="sidebar-text truncate">3. Thư Sau Phiên 2</span>
+                </button>
+              </div>
+
+              <!-- Nhánh 4: Thư Sau Phiên 3 (Mới) -->
+              <div class="relative">
+                <span class="absolute -left-[18px] top-1/2 w-3 h-0.5 bg-[#1992b0]"></span>
+                <button onclick="switchTab('letter3')" class="sidebar-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-bold text-[#1992b0] bg-sunny-light/60 hover:bg-sunny-light transition-colors" data-target="letter3">
+                  <span class="w-2 h-2 rounded-full bg-[#ff9500] animate-pulse"></span>
+                  <span class="sidebar-text truncate">4. Thư Sau Phiên 3 (Mới)</span>
                 </button>
               </div>
 
@@ -285,8 +297,8 @@
             <div class="mt-6 flex flex-wrap items-center justify-center gap-3.5">
               
               <!-- 1. ACETERNITY SHIMMER BUTTON (SunnyCare Teal) -->
-              <button onclick="switchTab('letter2')" class="relative inline-flex h-11 animate-shimmer items-center justify-center rounded-full border border-sunny-teal/30 bg-[linear-gradient(110deg,#1992b0,45%,#38bdf8,55%,#1992b0)] bg-[length:200%_100%] px-6 text-sm font-bold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#1992b0] focus:ring-offset-2 shadow-md shadow-sunny-teal/20">
-                Đọc Thư Phiên 2 Mới Nhất &rarr;
+              <button onclick="switchTab('letter3')" class="relative inline-flex h-11 animate-shimmer items-center justify-center rounded-full border border-sunny-teal/30 bg-[linear-gradient(110deg,#1992b0,45%,#38bdf8,55%,#1992b0)] bg-[length:200%_100%] px-6 text-sm font-bold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#1992b0] focus:ring-offset-2 shadow-md shadow-sunny-teal/20">
+                Đọc Thư Phiên 3 Mới Nhất &rarr;
               </button>
 
               <!-- 2. ACETERNITY BORDER GLOW BUTTON (SunnyCare Orange) -->
@@ -316,7 +328,7 @@
         </div>
 
         <!-- 3 Feature Cards Grid (SunnyCare Palette) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           
           <!-- Card 1 -->
           <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
@@ -348,6 +360,25 @@
             </div>
             <button onclick="switchTab('letter-client')" class="inline-flex items-center text-sm font-bold text-[#ff9500] hover:text-amber-700">
               Đọc trọn vẹn 10 trang &rarr;
+            </button>
+          </div>
+
+          <!-- Card 4: Phiên 3 Mới -->
+          <div class="bg-gradient-to-b from-white to-sunny-light/30 rounded-2xl border-2 border-[#1992b0]/40 p-6 flex flex-col justify-between shadow-md hover:shadow-lg transition-all relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-[#ff9500] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+              Mới Nhất
+            </div>
+            <div>
+              <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-3">
+                Phiên 3 · Thư & Checklist
+              </span>
+              <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">Thư Sau Phiên 3</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                Hòa giải Cái bóng, khẳng định thế mạnh Master Sales qua tâm lý học và hệ thống Checklist thói quen vi mô giảm lo âu.
+              </p>
+            </div>
+            <button onclick="switchTab('letter3')" class="inline-flex items-center text-sm font-bold text-[#1992b0] hover:text-sunny-dark">
+              Đọc thư & làm bài tập &rarr;
             </button>
           </div>
 
@@ -814,7 +845,26 @@
                 </div>
               </div>
 
-              <!-- Card 3 -->
+              <!-- Card 4: Phiên 3 Mới -->
+          <div class="bg-gradient-to-b from-white to-sunny-light/30 rounded-2xl border-2 border-[#1992b0]/40 p-6 flex flex-col justify-between shadow-md hover:shadow-lg transition-all relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-[#ff9500] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+              Mới Nhất
+            </div>
+            <div>
+              <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-3">
+                Phiên 3 · Thư & Checklist
+              </span>
+              <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">Thư Sau Phiên 3</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                Hòa giải Cái bóng, khẳng định thế mạnh Master Sales qua tâm lý học và hệ thống Checklist thói quen vi mô giảm lo âu.
+              </p>
+            </div>
+            <button onclick="switchTab('letter3')" class="inline-flex items-center text-sm font-bold text-[#1992b0] hover:text-sunny-dark">
+              Đọc thư & làm bài tập &rarr;
+            </button>
+          </div>
+
+          <!-- Card 3 -->
               <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
                 <div>
                   <div class="font-bold text-rose-600 text-sm mb-1">3. Chui rúc</div>
@@ -852,6 +902,369 @@
               <span>Xem Mục Tiêu Phiên 3</span>
               <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ======================================================== -->
+      <!-- TAB 7: THƯ GỬI HUYỀN PHƯƠNG - SAU PHIÊN 3 -->
+      <!-- ======================================================== -->
+      <div id="letter3" class="tab-pane space-y-6">
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-8 sm:p-12 shadow-sm letter-card">
+          
+          <!-- Header Banner Image & Title -->
+          <div class="border-b border-slate-200 pb-6 mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-2">
+                Hồ Sơ Chuyên Môn · Phiên 3
+              </span>
+              <h2 class="font-serif font-bold text-2xl sm:text-3xl text-slate-800">
+                THƯ GỬI HUYỀN PHƯƠNG - SAU PHIÊN 3
+              </h2>
+              <div class="text-xs text-slate-500 italic mt-1">
+                Thời gian: Ngày 18 tháng 11 năm 2026 · Nhà tham vấn: Trần Thiện
+              </div>
+            </div>
+            <div class="flex items-center gap-2 no-print">
+              <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                In Thư
+              </button>
+            </div>
+          </div>
+
+          <!-- Letter Body Content -->
+          <div class="font-serif text-slate-700 space-y-6 text-justify leading-relaxed text-base sm:text-lg">
+            
+            <p class="text-lg font-bold text-slate-800">
+              Em Huyền Phương thân mến,
+            </p>
+
+            <p>
+              Anh ngồi viết lá thư này cho em sau khi đã đọc thật kỹ từng con chữ trong bức tâm thư <em>"Lá thư thay lời cầu cứu của tâm hồn"</em> mà em viết lúc 6 giờ chiều tại văn phòng, cũng như lắng nghe trọn vẹn những chia sẻ ngổn ngang của em trong buổi làm việc Phiên 3 vừa qua.
+            </p>
+
+            <p class="bg-sunny-light/70 border-l-4 border-[#1992b0] p-4 rounded-r-xl font-sans text-base text-slate-800 font-medium">
+              Anh muốn nói với em điều đầu tiên: <strong>Cảm ơn em vì đã dám để cho chiếc áo giáp của "vị tướng sĩ kiên cường" rơi xuống.</strong>
+            </p>
+
+            <p>
+              Đó là một khoảnh khắc vô cùng thiêng liêng và quý giá. Suốt bao nhiêu năm tháng qua, em đã phải gồng mình làm một đóa hoa dại kiên cường giữa rừng chông gai, một mình chống chọi với giông bão nợ nần, bôi nhọ danh dự và áp lực sinh tồn. Em đã tự làm tê liệt hệ thần kinh của mình để không được kêu đau, ép mình phải luôn xuất sắc, thông minh, bản lĩnh để không ai dám coi thường. Nhưng ngày hôm nay, khi em ngồi khóc trước màn hình máy tính đen ngòm, khi em dám thừa nhận rằng mình đang chán nản, kiệt sức, muốn buông xuôi và thấy linh hồn mình như bị cầm tù – điều đó không hề có nghĩa là em yếu đuối hay thất bại. Đó là bằng chứng cho thấy <strong>đứa trẻ 21 tuổi bên trong em cuối cùng đã cảm thấy đủ an toàn để kêu cứu, để được khóc và để được phép yếu mềm.</strong>
+            </p>
+
+            <p>
+              Anh ở đây để đồng hành cùng em, lắng nghe tiếng kêu cứu ấy và cùng em bước qua giai đoạn giông bão này.
+            </p>
+
+            <div class="my-8 border-t border-slate-200"></div>
+
+            <!-- PHẦN I -->
+            <div class="font-sans">
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-700 mb-2">
+                Phần I
+              </span>
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-[#1992b0] mb-4">
+                BỨC TRANH TÂM LÝ & SỰ THỨC TỈNH NỘI TÂM
+              </h3>
+            </div>
+
+            <p>
+              Trong phiên 3, em đã bộc bạch rất nhiều nút thắt sâu kín. Anh muốn cùng em xâu chuỗi và giải mã chúng dưới góc nhìn tâm lý học lâm sàng, để em nhìn thấy bản chất thực sự của những gì mình đang trải qua:
+            </p>
+
+            <!-- Mục 1 -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 sm:p-6 space-y-3 font-sans text-sm sm:text-base">
+              <h4 class="font-serif font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#1992b0]"></span>
+                1. Sự thức tỉnh về Hình bóng Người đàn ông, Người bố và Chính em (The Shadow & Projection)
+              </h4>
+              <p class="text-slate-600 leading-relaxed">
+                Trong buổi gặp, em chia sẻ rằng khi nghĩ về người đàn ông ấy, em cảm thấy rất ghét, muốn phủ nhận, nhưng lại giật mình nhận ra những điểm tương đồng kỳ lạ giữa anh ta, người bố của em và chính bản thân em: <em>sự thiếu kiên nhẫn, gạt bỏ khi người khác chia sẻ ý kiến, và luôn luôn nôn nóng muốn chứng tỏ bản thân.</em>
+              </p>
+              <div class="bg-white border-l-4 border-[#ff9500] p-4 rounded-r-lg space-y-2">
+                <p class="text-slate-700"><strong>• Sự thật tâm lý học:</strong> Trong tâm lý học phân tích (<em>Jungian Psychology</em>), những đặc điểm ở người khác khiến ta căm ghét dữ dội nhất chính là tấm gương phản chiếu <strong>Cái bóng (The Shadow)</strong> – những phần tính cách mà ta sợ hãi hoặc chối bỏ ở chính mình.</p>
+                <p class="text-slate-700"><strong>• Lời giải mã giải thoát:</strong> Cả bố em, người đàn ông ấy và em đều là những linh hồn từng chịu tổn thương từ sự thiếu thốn tình thương vô điều kiện. Khi một đứa trẻ lớn lên trong cảm giác không được công nhận, nó buộc phải phát triển một cái tôi thật mạnh, thích gạt bỏ người khác để tự vệ. Việc em nhận diện được điều này chứng tỏ em đã bắt đầu bẻ gãy vòng lặp vô thức. Nhận diện để bao dung cho vết thương của bố, của người đàn ông kia, và quan trọng nhất là bao dung cho chính bản thân mình.</p>
+              </div>
+            </div>
+
+            <!-- Mục 2 -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 sm:p-6 space-y-3 font-sans text-sm sm:text-base">
+              <h4 class="font-serif font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#1992b0]"></span>
+                2. Tháo gỡ Khủng hoảng bản sắc ("Tôi có gì? Tôi muốn gì?"): Khẳng định lại thế mạnh rực rỡ
+              </h4>
+              <p class="text-slate-600 leading-relaxed">
+                Em trăn trở rằng em không biết mình có gì, không biết điểm mạnh của mình là gì và không biết mình thực sự muốn gì. Khi tâm trí bị bao phủ bởi sự mệt mỏi, nó thường xóa mờ mọi thành tựu và phóng đại sự trống rỗng. Anh muốn nhắc lại cho em những giá trị có thật:
+              </p>
+              <ul class="space-y-2 list-disc list-inside text-slate-700">
+                <li><strong>Tư duy khác biệt với số đông:</strong> Khả năng quan sát sắc bén, tư duy độc lập, không đi theo lối mòn và luôn nhìn thấy cơ hội ở nơi người khác thấy bế tắc.</li>
+                <li><strong>Ý chí tự học và khả năng thích ứng phi thường:</strong> Một cô gái 21 tuổi tự học 3 ngôn ngữ, tự nghiên cứu tài chính, tâm lý học và tự bơi trong ngành mới.</li>
+                <li><strong>Bằng chứng thực chiến không thể chối cãi:</strong> Bước chân vào công ty hóa chất đa quốc gia khắc nghiệt, <strong>chỉ trong 2 tháng, em đã mang về mức doanh số rất cao cho công ty!</strong> Đó là kết quả của năng lực đàm phán, tư duy kinh doanh nhạy bén và hành động thực tế, hoàn toàn không phải sự may mắn ngẫu nhiên.</li>
+              </ul>
+            </div>
+
+            <!-- Mục 3 -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 sm:p-6 space-y-3 font-sans text-sm sm:text-base">
+              <h4 class="font-serif font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#1992b0]"></span>
+                3. Hóa giải Áp lực So sánh Xã hội: Tầm nhìn trở thành Master Sales
+              </h4>
+              <p class="text-slate-600 leading-relaxed">
+                Em cảm thấy áp lực và tự ti khi nhìn bạn bè có chuyên môn sâu về kế toán, kiểm toán. Nhưng sự thật là: Kế toán, kiểm toán là kỹ năng quy trình theo khuôn mẫu có sẵn. Trong khi đó, <strong>Kỹ năng bán hàng (B2B, đàm phán thương mại quốc tế) là kỹ năng khó bậc nhất, hiếm bậc nhất và có giá trị chiến lược cao nhất trong thời đại kinh tế hiện nay.</strong>
+              </p>
+              <div class="bg-amber-50/80 border-l-4 border-[#ff9500] p-4 rounded-r-lg text-slate-800">
+                Bán hàng đỉnh cao không phải chèo kéo, mà là <strong>nghệ thuật thấu hiểu tâm lý con người</strong>. Em đã có sẵn nền tảng đam mê tâm lý học, tư duy logic và khả năng thấu cảm. Khi em mang sự hiểu biết tâm lý khách hàng vào việc phân tích nhu cầu và gỡ bỏ nỗi sợ rủi ro, em hoàn toàn có thể xây dựng kỹ năng bán hàng của mình đạt tới tầm <strong>Master (Bậc thầy)</strong>. Đó là con đường kiến tạo dòng tiền và vị thế độc tôn, không việc gì phải tự ti trước bất kỳ ai.
+              </div>
+            </div>
+
+            <!-- Mục 4 -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 sm:p-6 space-y-3 font-sans text-sm sm:text-base">
+              <h4 class="font-serif font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#1992b0]"></span>
+                4. Nhận diện trạng thái Rối loạn Lo âu nhẹ (Mild Anxiety & Emotional Burnout)
+              </h4>
+              <p class="text-slate-600 leading-relaxed">
+                Hiện tượng em cảm thấy buồn chán, ngổn ngang, chán nản với tất cả mọi việc hàng ngày (kể cả những việc thông thường) là dấu hiệu rõ ràng của <strong>tình trạng kiệt sức cảm xúc (Burnout) dẫn đến Rối loạn lo âu nhẹ (kèm Anhedonia - mất cảm giác hứng thú tạm thời)</strong>.
+              </p>
+              <p class="text-slate-700">
+                Não bộ của em đã chạy ở tần số báo động đỏ quá lâu để gồng gánh sinh tồn. Hệ thần kinh của em cạn kiệt năng lượng. Em không hề lười biếng; đây đơn giản là tín hiệu cơ thể đòi quyền được nghỉ ngơi. Đã đến lúc em cần chậm lại và thiết lập lại nhịp điệu sinh hoạt dịu dàng từng ngày.
+              </p>
+            </div>
+
+            <div class="my-8 border-t border-slate-200"></div>
+
+            <!-- PHẦN II: BÀI TẬP THỰC HÀNH -->
+            <div class="font-sans">
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 mb-2">
+                Phần II
+              </span>
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-emerald-700 mb-4">
+                HỆ THỐNG BÀI TẬP THỰC HÀNH CHUYÊN SÂU
+              </h3>
+            </div>
+
+            <!-- BÀI TẬP 1: CHECKLIST HẰNG NGÀY (INTERACTIVE COMPONENT) -->
+            <div class="bg-gradient-to-br from-emerald-50/50 via-white to-sunny-light/40 border-2 border-emerald-300/80 rounded-2xl p-6 sm:p-8 font-sans shadow-sm">
+              <div class="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-100 pb-4 mb-5">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Bài Tập 1 · Lưu Trình Duyệt Tự Động</span>
+                  <h4 class="font-serif font-bold text-xl text-slate-800">
+                    BẢNG CHECKLIST THIẾT LẬP NHỊP ĐIỆU SINH HOẠT HẰNG NGÀY
+                  </h4>
+                  <p class="text-xs text-slate-500 mt-1">
+                    Tick chọn mỗi khi hoàn thành. Trạng thái sẽ được tự động lưu lại trên máy của em mỗi ngày.
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="resetSession3Checklist()" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-colors border border-slate-200">
+                    Đặt Lại Ngày Mới
+                  </button>
+                </div>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="mb-6">
+                <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-1.5">
+                  <span>Tiến trình hoàn thành hôm nay:</span>
+                  <span id="p3-progress-text" class="text-emerald-700 font-extrabold text-sm">0% (0/10 việc)</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                  <div id="p3-progress-bar" class="bg-gradient-to-r from-[#1992b0] to-emerald-500 h-3 rounded-full transition-all duration-300 w-0"></div>
+                </div>
+              </div>
+
+              <!-- Checklist Items Grid -->
+              <div class="space-y-6">
+                
+                <!-- Khối Buổi Sáng -->
+                <div class="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+                  <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#ff9500] mb-3">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    Buổi Sáng: Khởi Động Dịu Dàng
+                  </div>
+                  <div class="space-y-3">
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_1" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>1. Uống 1 ly nước ấm</strong> ngay sau khi thức dậy để đánh thức và làm dịu các cơ quan nội tạng.
+                      </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_2" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>2. Mở cửa sổ & hít thở sâu 3 nhịp chậm</strong>, đón nhận ánh sáng tự nhiên trong 3 - 5 phút để kích hoạt serotonin.
+                      </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_3" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>3. Nhắc nhở bản thân một câu dịu dàng:</strong> <em>"Hôm nay mình chỉ cần làm tốt từng việc nhỏ trước mắt, không cần phải cứu cả thế giới."</em>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Khối Buổi Trưa & Chiều -->
+                <div class="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+                  <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1992b0] mb-3">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Buổi Trưa & Chiều: Nghỉ Ngơi Giác Quan Tại Công Ty
+                  </div>
+                  <div class="space-y-3">
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_4" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>4. Ăn trưa chánh niệm:</strong> Ăn chậm rãi, cảm nhận thức ăn và <strong>tuyệt đối không lướt điện thoại</strong> hay xem tài liệu trong lúc ăn.
+                      </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_5" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>5. Dành 5 phút nghỉ ngơi giác quan:</strong> Rời mắt khỏi màn hình máy tính, nhắm mắt thả lỏng vai và cổ, để não bộ hạ nhiệt.
+                      </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_6" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>6. Ghi nhận 1 bước tiến nhỏ trong công việc:</strong> Nhận diện 1 email/cuộc gọi khách hàng chu đáo em đã thực hiện hôm nay.
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Khối Buổi Tối -->
+                <div class="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+                  <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-600 mb-3">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    Buổi Tối: Thư Giãn & Tự Vỗ Về
+                  </div>
+                  <div class="space-y-3">
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_7" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>7. Tắm nước ấm</strong> để xả bỏ mọi căng thẳng cơ bắp tích tụ trong ngày.
+                      </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_8" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>8. Tắt thông báo công việc sau 20h30</strong> để bảo vệ không gian riêng tư và ranh giới cho tâm hồn.
+                      </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_9" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>9. Viết ra sổ 3 điều biết ơn chính mình:</strong> Ghi nhận sự nỗ lực và lòng can đảm của bản thân trong ngày.
+                      </span>
+                    </label>
+                    <label class="flex items-start gap-3 cursor-pointer group">
+                      <input type="checkbox" id="chk_p3_10" onchange="updateP3Checklist()" class="mt-1 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer">
+                      <span class="text-sm text-slate-700 group-hover:text-slate-900 leading-snug">
+                        <strong>10. Ôm lấy bản thân trước khi ngủ:</strong> Đặt tay lên ngực và tự nói: <em>"Cảm ơn Phương, hôm nay em đã vất vả rồi, hãy ngủ thật ngon nhé."</em>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <div id="p3-save-status" class="mt-4 text-right text-xs font-semibold text-emerald-600 italic">
+                ✓ Trạng thái tự động lưu trên trình duyệt của em
+              </div>
+            </div>
+
+            <!-- BÀI TẬP 2: NHẬT KÝ BÁN HÀNG THẤU CẢM -->
+            <div class="bg-amber-50/60 border border-amber-200 rounded-2xl p-6 sm:p-8 font-sans space-y-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#ff9500]">Bài Tập 2 · Nâng Tầm Năng Lực</span>
+              <h4 class="font-serif font-bold text-xl text-slate-800">
+                "NHẬT KÝ BÁN HÀNG THẤU CẢM" – ỨNG DỤNG TÂM LÝ ĐỂ MASTER SALES
+              </h4>
+              <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                Khi chuẩn bị tiếp xúc với một đối tác hoặc khách hàng, hãy dành ra 2 phút để tự trả lời 3 câu hỏi tâm lý vào cuốn sổ tay riêng:
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div class="bg-white p-4 rounded-xl border border-amber-200/80 shadow-2xs">
+                  <div class="font-bold text-[#ff9500] mb-1">Câu hỏi 1: Nỗi sợ</div>
+                  <p class="text-slate-600 text-xs sm:text-sm">Khách hàng này đang sợ điều gì nhất? (Sợ bị mua hớ, sợ chất lượng không ổn định bị cấp trên phê bình, hay sợ chậm tiến độ?)</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-amber-200/80 shadow-2xs">
+                  <div class="font-bold text-[#1992b0] mb-1">Câu hỏi 2: Nhu cầu ngầm</div>
+                  <p class="text-slate-600 text-xs sm:text-sm">Họ thực sự cần điều gì ở mình? (Sự an tâm tuyệt đối, sự trung thực, hay cảm giác được tôn trọng vị thế chuyên môn?)</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-amber-200/80 shadow-2xs">
+                  <div class="font-bold text-emerald-600 mb-1">Câu hỏi 3: Giải pháp thấu cảm</div>
+                  <p class="text-slate-600 text-xs sm:text-sm">Mình có thể nói câu gì và đưa giải pháp gì hôm nay để mang lại cho họ cảm giác an tâm và tin tưởng nhất?</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- BÀI TẬP 3: KHOẢNG DỪNG 5 GIÂY -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 font-sans space-y-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-600">Bài Tập 3 · Tĩnh Tâm & Điều Phục</span>
+              <h4 class="font-serif font-bold text-xl text-slate-800">
+                "KHOẢNG DỪNG 5 GIÂY" HÒA GIẢI CÁI BÓNG THIẾU KIÊN NHẪN & CHỨNG TỎ
+              </h4>
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-sm">
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                  <div class="font-bold text-purple-700 text-xs uppercase mb-1">Bước 1: Nhận diện</div>
+                  <p class="text-slate-600 text-xs leading-relaxed">Khi thấy mình muốn ngắt lời hoặc gạt phắt ý kiến người khác: Thầm nhận ra <em>"Cái bóng tự vệ đang trỗi dậy!"</em></p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                  <div class="font-bold text-purple-700 text-xs uppercase mb-1">Bước 2: Hít thở 5s</div>
+                  <p class="text-slate-600 text-xs leading-relaxed">Hít sâu qua mũi trong 2 giây, giữ 1 giây rồi thở nhẹ ra qua miệng.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                  <div class="font-bold text-purple-700 text-xs uppercase mb-1">Bước 3: Lời tự nhủ</div>
+                  <p class="text-slate-600 text-xs leading-relaxed">Thầm nói: <em>"Phương à, em đã đủ giỏi rồi, không cần phải thắng trong cuộc đối thoại này để chứng minh bản thân."</em></p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                  <div class="font-bold text-purple-700 text-xs uppercase mb-1">Bước 4: Lắng nghe</div>
+                  <p class="text-slate-600 text-xs leading-relaxed">Mỉm cười nhẹ, kiên nhẫn để họ nói hết câu rồi phản hồi trong điềm đạm.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="my-8 border-t border-slate-200"></div>
+
+            <!-- LỜI KẾT -->
+            <p>
+              Huyền Phương à,
+            </p>
+
+            <p>
+              Cái lồng sắt lớn nhất không phải là bốn bức tường văn phòng hay màn hình máy tính đen ngòm. Cái lồng sắt lớn nhất chính là <strong>sự kỳ vọng quá mức và nỗi sợ không được công nhận mà em vô tình tự khóa mình vào</strong>.
+            </p>
+
+            <p>
+              Em mới 21 tuổi. Cuộc đời em không bắt buộc phải giải quyết xong mọi món nợ, không bắt buộc phải đạt đỉnh cao danh vọng hay cứu vớt cả thế giới ngay trong ngày hôm nay. Đóa hoa dại lớn lên giữa chông gai đã chứng minh sức sống kỳ diệu của nó rồi; giờ đây, nó xứng đáng được tưới tắm bằng sự dịu dàng, được tận hưởng ánh nắng và hít thở bầu không khí tự do.
+            </p>
+
+            <p>
+              Tự do không phải là bỏ chạy khỏi hiện tại, mà là <strong>tự do khỏi áp lực phải luôn hoàn hảo</strong>. Hãy bắt đầu từ những điều nhỏ nhất: uống một ngụm nước ấm, hít một hơi thở sâu, ngủ một giấc thật trọn vẹn và mỉm cười với chính mình.
+            </p>
+
+            <p>
+              Anh luôn tin tưởng vào bản lĩnh và vẻ đẹp tâm hồn của em. Hãy cứ bước đi từng bước nhỏ, có anh luôn đồng hành phía sau.
+            </p>
+
+            <div class="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans not-italic">
+              <div>
+                <div class="font-serif font-bold text-lg text-slate-800">Anh Trần Thiện</div>
+                <div class="text-xs text-[#1992b0] font-semibold">Người đồng hành tinh thần của Huyền Phương</div>
+                <div class="text-[11px] text-slate-500">SUNNYCARE Group · Trị liệu & Tham vấn Tâm lý</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button onclick="switchTab('session3')" class="px-4 py-2 rounded-full text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 transition-colors">
+                  Xem Kế Hoạch Phiên 3 &rarr;
+                </button>
+                <button onclick="switchTab('home')" class="px-4 py-2 rounded-full text-xs font-bold text-white bg-[#1992b0] hover:bg-sunny-dark transition-colors shadow-sm">
+                  Trang Chủ &rarr;
+                </button>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -1028,7 +1441,7 @@
         }
 
         // If target is a letter in the tree, ensure tree is expanded
-        if (['letter1', 'letter-client', 'letter2'].includes(tabId)) {
+        if (['letter1', 'letter-client', 'letter2', 'letter3'].includes(tabId)) {
           openLetterTree();
         }
       }
@@ -1069,6 +1482,71 @@
       }
     }
 
+    
+    // ========================================================
+    // SESSION 3 INTERACTIVE CHECKLIST LOGIC WITH LOCALSTORAGE
+    // ========================================================
+    const p3ChecklistIds = [
+      'chk_p3_1', 'chk_p3_2', 'chk_p3_3',
+      'chk_p3_4', 'chk_p3_5', 'chk_p3_6',
+      'chk_p3_7', 'chk_p3_8', 'chk_p3_9', 'chk_p3_10'
+    ];
+
+    function updateP3Checklist() {
+      const state = {};
+      let checkedCount = 0;
+      p3ChecklistIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          state[id] = el.checked;
+          if (el.checked) checkedCount++;
+        }
+      });
+
+      // Save to localStorage
+      localStorage.setItem('hp_session3_checklist', JSON.stringify(state));
+
+      // Update progress bar
+      const total = p3ChecklistIds.length;
+      const percent = Math.round((checkedCount / total) * 100);
+      const bar = document.getElementById('p3-progress-bar');
+      const text = document.getElementById('p3-progress-text');
+      const status = document.getElementById('p3-save-status');
+
+      if (bar) bar.style.width = percent + '%';
+      if (text) text.textContent = `${percent}% (${checkedCount}/${total} việc)`;
+      if (status) {
+        status.textContent = `✓ Đã tự động lưu lúc ${new Date().toLocaleTimeString('vi-VN')} (${checkedCount}/${total} việc)`;
+      }
+    }
+
+    function loadP3Checklist() {
+      const saved = localStorage.getItem('hp_session3_checklist');
+      if (saved) {
+        try {
+          const state = JSON.parse(saved);
+          p3ChecklistIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && state[id] !== undefined) {
+              el.checked = !!state[id];
+            }
+          });
+        } catch (e) {}
+      }
+      updateP3Checklist();
+    }
+
+    function resetSession3Checklist() {
+      if (confirm('Em có muốn đặt lại checklist để bắt đầu một ngày mới thật nhẹ nhõm không?')) {
+        p3ChecklistIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.checked = false;
+        });
+        localStorage.removeItem('hp_session3_checklist');
+        updateP3Checklist();
+      }
+    }
+
     // Auto-save checklist to localStorage
     function saveChecklist() {
       const state = {
@@ -1088,6 +1566,7 @@
 
     // Load checklist on load
     window.addEventListener('DOMContentLoaded', () => {
+      loadP3Checklist();
       const saved = localStorage.getItem('hp_archive_checklist');
       if (saved) {
         try {
