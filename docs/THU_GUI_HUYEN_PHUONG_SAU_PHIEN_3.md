@@ -56,7 +56,7 @@ Hiện tượng em cảm thấy buồn chán, ngổn ngang, chán nản với t�
 
 ---
 
-#### 🎬 VIDEO HƯỚNG DẪN THỰC HÀNH: ĐIỀU HÒA CẢM XÚC, HẠ LO ÂU & DỄ NGỦ
+#### 🎬 VIDEO THỰC HÀNH: ĐIỀU HÒA CẢM XÚC & HẠ LO ÂU
 > **Link thực hành trên YouTube**: [Thực Hành Kỹ Thuật Thở 4-7-8 & Grounding 5-4-3-2-1: Hạ Lo Âu, Thư Giãn & Dễ Ngủ (10 Phút)](https://youtu.be/IMu5dg3gurs)  
 > **Kênh**: THAY ĐỔI TÂM THỨC (@Thaydoitamthuc-PSY) · **Thời lượng**: 10 phút  
 > **Hướng dẫn thực hành cho Phương**:
