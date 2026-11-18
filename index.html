@@ -46,12 +46,7 @@
   </script>
 
   <style>
-    
-    /* Universal Be Vietnam Pro Font Enforcement */
-    body, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, label {
-      font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    }
-
+    body, button, input, select, textarea { font-family: 'Be Vietnam Pro', sans-serif !important; }
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -253,10 +248,59 @@
             <span class="sidebar-text truncate">Góc Thực Hành</span>
           </button>
 
-          <!-- Mục Tiêu Phiên 3 -->
-          <button onclick="switchTab('session4')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-purple-600 hover:bg-purple-50 hidden md:inline-block" data-target="session4">
-          Kế Hoạch P4
-        </button>
+          <!-- Mục Tiêu Phiên 4 -->
+          <button onclick="switchTab('session4')" class="sidebar-btn w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-purple-600 hover:bg-purple-50 transition-colors" data-target="session4">
+            <svg class="w-5 h-5 flex-shrink-0 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span class="sidebar-text truncate">Mục Tiêu Phiên 4</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar Bottom: Professional Signature -->
+      <div class="p-4 border-t border-slate-100 flex items-center gap-3 bg-slate-50/50 sidebar-text">
+        <div class="w-8 h-8 rounded-full bg-[#1992b0] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+          TT
+        </div>
+        <div class="truncate">
+          <div class="text-xs font-bold text-slate-800">Trần Thiện</div>
+          <div class="text-[11px] text-slate-500">Nhà tham vấn SUNNYCARE</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ======================================================== -->
+    <!-- MAIN CONTENT & FOOTER AREA (Offset by Sidebar) -->
+    <!-- ======================================================== -->
+    <div id="content-area" class="flex-1 ml-64 transition-all duration-300 flex flex-col min-h-screen">
+      
+      <main id="main-content" class="flex-1 p-4 sm:p-8 max-w-5xl mx-auto w-full">
+
+      <!-- ======================================================== -->
+      <!-- TAB 1: TRANG TỔNG QUAN (HOME) -->
+      <!-- ======================================================== -->
+      <div id="home" class="tab-pane active space-y-6">
+
+        <!-- Hero Header Banner -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm no-print">
+          <img src="header.png" alt="SunnyCare Banner" class="w-full h-auto object-cover">
+          <div class="p-6 sm:p-8 text-center bg-gradient-to-b from-white to-slate-50/50">
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sunny-light text-[#1992b0] mb-3">
+              Hồ Sơ Tham Vấn Chuyên Sâu
+            </span>
+            <h1 class="font-serif text-2xl sm:text-3xl font-bold text-slate-800 mb-2">
+              HÀNH TRÌNH CHỮA LÀNH & TRỞ VỀ VỚI CHÍNH MÌNH
+            </h1>
+            <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+              Không gian kỹ thuật số lưu trữ toàn diện từng bức thư, những chiêm nghiệm nội tâm sâu sắc và các bài tập chuyển hóa của thân chủ Đặng Huyền Phương cùng Nhà tham vấn Trần Thiện.
+            </p>
+
+            <!-- ACETERNITY BUTTONS DEMO IN ACTION -->
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3.5">
+              
+              <!-- 1. ACETERNITY SHIMMER BUTTON (SunnyCare Teal) -->
+              <button onclick="switchTab('letter3')" class="relative inline-flex h-11 animate-shimmer items-center justify-center rounded-full border border-sunny-teal/30 bg-[linear-gradient(110deg,#1992b0,45%,#38bdf8,55%,#1992b0)] bg-[length:200%_100%] px-6 text-sm font-bold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#1992b0] focus:ring-offset-2 shadow-md shadow-sunny-teal/20">
+                Đọc Thư Phiên 3 Mới Nhất &rarr;
+              </button>
 
               <!-- 2. ACETERNITY BORDER GLOW BUTTON (SunnyCare Orange) -->
               <button onclick="switchTab('practice')" class="relative inline-flex h-11 overflow-hidden rounded-full p-[1.5px] focus:outline-none group">
@@ -855,9 +899,10 @@
               <div class="font-serif font-bold text-base text-slate-800">4 Mục Tiêu Trọng Tâm Cho Phiên 3</div>
               <p class="text-xs text-slate-500">Chuyển từ lý trí sang cảm xúc, kỹ thuật Ghế trống ôm ấp đứa trẻ bên trong.</p>
             </div>
-            <button onclick="switchTab('session4')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-purple-600 hover:bg-purple-50 hidden md:inline-block" data-target="session4">
-          Kế Hoạch P4
-        </button>
+            <button onclick="switchTab('session4')" class="relative inline-flex h-11 items-center justify-center rounded-full bg-purple-700 hover:bg-purple-800 px-6 text-sm font-bold text-white transition-all shadow-md shadow-purple-700/20 flex-shrink-0 group w-full sm:w-auto">
+              <span>Xem Mục Tiêu Phiên 4</span>
+              <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
           </div>
 
         </div>
@@ -1212,9 +1257,90 @@
                 <div class="text-[11px] text-slate-500">SUNNYCARE Group · Trị liệu & Tham vấn Tâm lý</div>
               </div>
               <div class="flex items-center gap-3">
-                <button onclick="switchTab('session4')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-purple-600 hover:bg-purple-50 hidden md:inline-block" data-target="session4">
-          Kế Hoạch P4
-        </button>
+                <button onclick="switchTab('session4')" class="px-4 py-2 rounded-full text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 transition-colors">
+                  Xem Kế Hoạch Phiên 4 &rarr;
+                </button>
+                <button onclick="switchTab('home')" class="px-4 py-2 rounded-full text-xs font-bold text-white bg-[#1992b0] hover:bg-sunny-dark transition-colors shadow-sm">
+                  Trang Chủ &rarr;
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- TAB 6: KẾ HOẠCH & MỤC TIÊU PHIÊN 3 -->
+      <!-- ======================================================== -->
+      <!-- ======================================================== -->
+      <!-- TAB 6: KẾ HOẠCH & MỤC TIÊU PHIÊN 4 -->
+      <!-- ======================================================== -->
+      <div id="session4" class="tab-pane space-y-6">
+        <div class="bg-white rounded-2xl border border-purple-200 p-8 sm:p-10 shadow-sm letter-card">
+          
+          <div class="border-b border-purple-100 pb-5 mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-700 mb-2">
+                Kế Hoạch Lâm Sàng · Phiên 4
+              </span>
+              <h2 class="font-serif font-bold text-2xl text-slate-800">
+                KẾ HOẠCH & MỤC TIÊU THAM VẤN CHUYÊN SÂU - PHIÊN 4
+              </h2>
+              <div class="text-xs text-slate-500 italic mt-1">
+                Chủ đề: "Hòa Giải Chuyển Di Người Cha, Tích Hợp Bản Ngã Master Sales & Phục Hồi Năng Lượng Thần Kinh"
+              </div>
+            </div>
+            <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-white bg-purple-600 hover:bg-purple-700 shadow-sm transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              In Kế Hoạch Này
+            </button>
+          </div>
+
+          <div class="text-slate-700 space-y-5 text-justify leading-relaxed text-base">
+            <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded-r-lg text-sm sm:text-base">
+              <strong>MỤC TIÊU TỔNG QUÁT:</strong> Giúp thân chủ hòa giải triệt để cơ chế Chuyển di Người cha (<em>Father Transference</em>) để dứt điểm sự ám ảnh và phụ thuộc cảm xúc vào người đàn ông cũ; lượng giá mức độ phục hồi hệ thần kinh sau khi thực hành Bảng Checklist 10 thói quen vi mô; xóa bỏ hoàn toàn áp lực so sánh xã hội với ngành kế toán/kiểm toán; định hình lộ trình phát triển bản ngã chuyên môn <strong>"Master Sales bằng nghệ thuật thấu cảm tâm lý"</strong>; đồng thời thiết lập ranh giới an toàn nội tại để tách rời trách nhiệm cá nhân khỏi gánh nặng nợ nần và kỳ vọng của gia đình.
+            </div>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">
+              1. Nghiệm thu Tiến trình & Lượng giá Sự Phục hồi Hệ thần kinh
+            </h3>
+            <p>
+              Khảo sát việc thực hành <strong>Bảng Checklist 10 thói quen vi mô hằng ngày</strong>: đo lường sự phục hồi giấc ngủ, giảm căng thẳng vùng vai cổ gáy và hóa giải cảm giác chán nản anhedonia. Lắng nghe trải nghiệm áp dụng <strong>"Khoảng dừng 5 giây"</strong> trong giao tiếp công việc (khả năng làm chủ Cái bóng tự vệ, sự kiên nhẫn lắng nghe). Lượng giá phản hồi từ <strong>"Nhật ký Bán hàng Thấu cảm"</strong> khi tập trung phân tích nỗi sợ và nhu cầu ngầm của khách hàng.
+            </p>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">
+              2. Hòa giải triệt để Cơ chế Chuyển di Người cha (Father Transference)
+            </h3>
+            <p>
+              Bóc tách tận gốc rễ tâm lý: Mối quan hệ si mê, vừa yêu vừa ghét với người đàn ông thành đạt thực chất là sự phóng chiếu khao khát được công nhận của người cha từ thuở ấu thơ. Hóa giải niềm tin cốt lõi sai lệch: <em>"Chỉ khi anh ta công nhận thì mình mới có giá trị và gián tiếp bắt bố phải công nhận mình"</em>. Giúp thân chủ nhận ra giá trị tự thân bẩm sinh và thực hiện nghi thức khép lại quá khứ, giải phóng tâm trí khỏi sự ám ảnh lệ thuộc.
+            </p>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">
+              3. Tích hợp Bản ngã Chuyên môn: Master Sales bằng Tâm lý học
+            </h3>
+            <p>
+              Xóa bỏ hoàn toàn cảm giác tự ti khi so sánh với bạn bè làm kế toán/kiểm toán (kỹ năng quy trình định sẵn) so với bán hàng B2B thương mại quốc tế (nghệ thuật kiến tạo dòng tiền và thấu cảm con người). Khẳng định bài học thành công khi mang về <strong>doanh số cao vượt trội chỉ sau 2 tháng</strong> vào công ty mới. Hướng dẫn lộ trình nâng tầm kỹ năng bán hàng đạt cấp độ <strong>Master (Bậc thầy)</strong> bằng năng lực giải mã tâm lý khách hàng để kiến tạo sự tự chủ tài chính vững chắc.
+            </p>
+
+            <h3 class="font-serif font-bold text-xl text-purple-800 pt-4 border-b border-purple-100 pb-2">
+              4. Thiết lập Ranh giới An toàn Nội tại & Tách rời Gánh nặng Gia đình
+            </h3>
+            <p>
+              Bóc tách hội chứng "Đứa trẻ gánh tội / Người giải cứu gia đình" (<em>Parentification</em>). Phân định rõ ràng: Nợ nần và nghịch cảnh quá khứ thuộc về trách nhiệm của thế hệ trước; thân chủ không có nghĩa vụ phải hy sinh thanh xuân và sức khỏe tinh thần để trả nợ thay. Tháo dỡ chiếc áo giáp "tướng sĩ", cho phép cô gái 21 tuổi được sống tự do, nhẹ nhõm và yêu thương chính mình mà không còn cảm giác tội lỗi.
+            </p>
+
+            <div class="bg-sunny-light border-l-4 border-[#1992b0] p-4 rounded-r-lg text-sm text-slate-800 mt-6">
+              <strong>💡 Tâm thế chuẩn bị cho Phiên 4:</strong> Huyền Phương tiếp tục duy trì Bảng Checklist 10 việc hằng ngày trên website, ghi nhận nhật ký bán hàng và bước vào phiên 4 với tâm thế sẵn sàng buông bỏ chiếc áo giáp nặng nề để đón nhận sự tự do đích thực.
+            </div>
+          </div>
+
+          <!-- Next Step Navigation Card -->
+          <div class="mt-8 pt-6 border-t border-purple-100 flex flex-col sm:flex-row items-center justify-between gap-4 no-print bg-sunny-light/60 -mx-8 -mb-8 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-2xl">
+            <button onclick="switchTab('letter3')" class="inline-flex h-11 items-center justify-center rounded-full bg-white hover:bg-slate-100 px-5 text-xs font-bold text-slate-600 border border-slate-200 transition-colors flex-shrink-0 w-full sm:w-auto">
+              &larr; Thư Sau Phiên 3
+            </button>
             <div class="text-center sm:text-right">
               <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600">Định Hướng Tương Lai</span>
               <div class="font-serif font-bold text-base text-slate-800">Hành Trình Tham Vấn Phiên 4</div>
