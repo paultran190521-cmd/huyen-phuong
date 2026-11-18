@@ -52,7 +52,17 @@ Hiện tượng em cảm thấy buồn chán, ngổn ngang, chán nản với t�
 
 ### PHẦN II: HỆ THỐNG BÀI TẬP THỰC HÀNH CỤ THỂ
 
-Để giúp em từng bước thoát khỏi cảm giác "bị giam cầm" và hồi phục năng lượng cho hệ thần kinh, anh thiết kế cho em **3 bài tập thực hành sát thực tế**:
+Để giúp em từng bước thoát khỏi cảm giác "bị giam cầm" và hồi phục năng lượng cho hệ thần kinh, anh gửi em **video hướng dẫn thực hành điều hòa cảm xúc** cùng **3 bài tập thực hành cụ thể**:
+
+---
+
+#### 🎬 VIDEO HƯỚNG DẪN THỰC HÀNH: ĐIỀU HÒA CẢM XÚC, HẠ LO ÂU & DỄ NGỦ
+> **Link thực hành trên YouTube**: [Thực Hành Kỹ Thuật Thở 4-7-8 & Grounding 5-4-3-2-1: Hạ Lo Âu, Thư Giãn & Dễ Ngủ (10 Phút)](https://youtu.be/IMu5dg3gurs)  
+> **Kênh**: THAY ĐỔI TÂM THỨC (@Thaydoitamthuc-PSY) · **Thời lượng**: 10 phút  
+> **Hướng dẫn thực hành cho Phương**:
+> 1. **Thời điểm**: Mỗi tối trước khi đi ngủ, hoặc bất cứ khi nào em cảm thấy cơn quá tải cảm xúc, lo âu dồn dập hay bế tắc ập đến: Em hãy tìm một góc yên tĩnh, đeo tai nghe và bật video này lên.
+> 2. **Kỹ thuật thở 4-7-8**: Nhắm mắt lại, thả lỏng toàn bộ cơ thể và làm theo từng nhịp thở trong video (hít vào 4 giây bằng mũi, giữ hơi 7 giây, thở ra chậm 8 giây bằng miệng) để kích hoạt hệ thần kinh phó giao cảm, hạ nhịp tim và giải phóng căng thẳng cơ bắp.
+> 3. **Kỹ thuật tiếp đất (Grounding 5-4-3-2-1)**: Tiếp tục lắng nghe bài dẫn tiếp đất để kéo tâm trí thoát khỏi những suy nghĩ miên man hay sự tự phán xét trong đầu, đưa em trở về an trú với hiện tại.
 
 ---
 
