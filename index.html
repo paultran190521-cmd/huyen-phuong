@@ -112,7 +112,7 @@
 
       <!-- Center Links (Floating Pill Tabs) -->
       <div class="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-semibold">
-        <button onclick="switchTab('home')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-[#1992b0] bg-sunny-light font-bold" data-target="home">
+        <button onclick="switchTab('home')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100" data-target="home">
           Trang Chủ
         </button>
         <button onclick="switchTab('letter1')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100" data-target="letter1">
@@ -124,7 +124,7 @@
         <button onclick="switchTab('letter2')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100" data-target="letter2">
           Phiên 2
         </button>
-        <button onclick="switchTab('letter3')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100 font-bold" data-target="letter3">
+        <button onclick="switchTab('letter3')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-[#1992b0] bg-sunny-light font-bold" data-target="letter3">
           Phiên 3
         </button>
         <button onclick="switchTab('practice')" class="nav-pill px-3 py-1.5 rounded-full transition-all text-slate-600 hover:text-[#1992b0] hover:bg-slate-100 hidden md:inline-block" data-target="practice">
@@ -171,7 +171,7 @@
           </div>
 
           <!-- Trang Tổng Quan -->
-          <button onclick="switchTab('home')" class="sidebar-btn w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-[#1992b0] bg-sunny-light transition-colors" data-target="home">
+          <button onclick="switchTab('home')" class="sidebar-btn w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-[#1992b0] hover:bg-slate-50 transition-colors" data-target="home">
             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
             <span class="sidebar-text truncate">Trang Tổng Quan</span>
           </button>
@@ -229,7 +229,7 @@
               <!-- Nhánh 4: Thư Sau Phiên 3 (Mới) -->
               <div class="relative">
                 <span class="absolute -left-[18px] top-1/2 w-3 h-0.5 bg-[#1992b0]"></span>
-                <button onclick="switchTab('letter3')" class="sidebar-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-bold text-[#1992b0] bg-sunny-light/60 hover:bg-sunny-light transition-colors" data-target="letter3">
+                <button onclick="switchTab('letter3')" class="sidebar-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-bold text-[#1992b0] bg-sunny-light transition-colors" data-target="letter3">
                   <span class="w-2 h-2 rounded-full bg-[#ff9500] animate-pulse"></span>
                   <span class="sidebar-text truncate">4. Thư Sau Phiên 3 (Mới)</span>
                 </button>
@@ -278,7 +278,7 @@
       <!-- ======================================================== -->
       <!-- TAB 1: TRANG TỔNG QUAN (HOME) -->
       <!-- ======================================================== -->
-      <div id="home" class="tab-pane active space-y-6">
+      <div id="home" class="tab-pane space-y-6">
 
         <!-- Hero Header Banner -->
         <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm no-print">
@@ -912,7 +912,7 @@
       <!-- ======================================================== -->
       <!-- TAB 7: THƯ GỬI HUYỀN PHƯƠNG - SAU PHIÊN 3 -->
       <!-- ======================================================== -->
-      <div id="letter3" class="tab-pane space-y-6">
+      <div id="letter3" class="tab-pane active space-y-6">
         <div class="bg-white rounded-2xl border border-slate-200/80 p-8 sm:p-12 shadow-sm letter-card">
           
           <!-- Header Banner Image & Title -->
@@ -1591,6 +1591,12 @@
     // Load checklist on load
     window.addEventListener('DOMContentLoaded', () => {
       loadP3Checklist();
+      
+      // Auto-open Letter 3 by default on initial page load (or honor url hash if specified)
+      const initialTab = (window.location.hash && document.getElementById(window.location.hash.substring(1))) 
+        ? window.location.hash.substring(1) 
+        : 'letter3';
+      switchTab(initialTab);
       const saved = localStorage.getItem('hp_archive_checklist');
       if (saved) {
         try {
